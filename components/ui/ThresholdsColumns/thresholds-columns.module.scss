@@ -1,0 +1,27 @@
+@use "styles/inc/variables" as *;
+
+.columns {
+  display: flex;
+  align-items: flex-start;
+  margin: -1rem -1.5rem;
+}
+
+.column {
+  font-weight: 600;
+  margin: 1rem 1.5rem;
+}
+
+.priority {
+  font-weight: 700;
+  color: $accent-color;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.subtitle {
+  color: $secondary-color;
+  font-size: 0.9rem;
+  font-weight: normal;
+  white-space: nowrap;
+}

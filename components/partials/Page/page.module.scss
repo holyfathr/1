@@ -1,0 +1,26 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.page {
+  width: $width-landing;
+  display: grid;
+  gap: 1.5rem;
+  grid-auto-rows: minmax(min-content, max-content);
+  padding: 4rem 0;
+
+  @media screen and (max-width: 750px) {
+    padding: 2rem 0;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: -0.5rem -1rem;
+
+  > * {
+    margin: 0.5rem 1rem;
+  }
+}

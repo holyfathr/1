@@ -1,0 +1,49 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.wrapper {
+  border-radius: $border-radius-xl;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 2.75rem;
+  border: 1px solid $primary-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.button {
+  @include mixins.box(2rem);
+
+  margin-left: -0.5rem;
+  margin-right: 0.5rem;
+}
+
+.input {
+  @include mixins.hide-number-arrows;
+
+  border-radius: $border-radius-s;
+  border: 1px solid $primary-color;
+  width: calc(3ch + 1rem);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-left: 0.75rem;
+
+  &.filled {
+    background-color: $accent-color;
+    border-color: $accent-color;
+    color: #fff;
+  }
+
+  &:read-only {
+    background-color: $secondary-light-color;
+    border-color: $secondary-light-color;
+    color: $primary-color;
+  }
+}
+
+.error .input {
+  border-color: $danger-color;
+}

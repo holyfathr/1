@@ -1,0 +1,25 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.button {
+  @include mixins.box(1.5rem);
+  @include mixins.reset-button;
+  @include mixins.transition(transform);
+
+  &:hover {
+    transform: scale(1.025);
+  }
+}
+
+.icon {
+  @include mixins.box(100%);
+}
+
+.active .icon {
+  filter: $to-accent-color-filter;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

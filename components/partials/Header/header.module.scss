@@ -1,0 +1,47 @@
+@use "styles/inc/variables" as *;
+
+.header {
+  border-bottom: 1px solid;
+  min-height: $height-header;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 450px) {
+    justify-content: center;
+  }
+}
+
+.logo {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.content {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  overflow: hidden;
+
+  
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.flat {
+  border-bottom: 0;
+}

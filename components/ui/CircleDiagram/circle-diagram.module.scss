@@ -1,0 +1,25 @@
+@use "styles/inc/mixins";
+
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+.diagram {
+  @include mixins.box(12rem);
+
+  border-radius: 50%;
+  position: relative;
+  margin-right: 2rem;
+}
+
+.inner {
+  @include mixins.box(60%);
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 50%;
+}

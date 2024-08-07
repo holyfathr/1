@@ -1,0 +1,44 @@
+{
+  "pageTitle": "Поиск",
+  "educationalProgramSearch": "Поиск образовательной программы",
+  "filters": {
+    "label": "Фильтры",
+    "loading": "Загрузка фильтров...",
+    "educationForm": "Форма обучения",
+    "educationFormOptions": {
+      "fullTime": "Очная",
+      "partTime": "Очно-заочная",
+      "absentee": "Заочная"
+    },
+    "educationLevel": "Уровень образования",
+    "educationLevelOptions": {
+      "bachelor": "Бакалавриат",
+      "master": "Магистратура",
+      "postgraduate": "Подготовительный",
+      "specialist": "Специалитет"
+    },
+    "educationLanguage": "Языки обучения",
+    "educationLanguageOptions": {
+      "ru": "Русский язык",
+      "en": "Английский язык"
+    },
+    "facultyCity": "Город",
+    "fieldOfStudy": "Направление обучения",
+    "cost": "Стоимость обучения",
+    "extended": "Дополнительно",
+    "extendedOptions": {
+      "migrationSupport": "Миграционное сопровождение",
+      "hasScholarshipsAndDiscounts": "Есть стипендии и скидки",
+      "isDormitoryAvailabel": "Есть общежитие"
+    },
+    "ordering": "Сортировка",
+    "orderingOptions": {
+      "title": "По названию А→Я",
+      "titleDesc": "По названию Я→А",
+      "commerceCost": "По цене ↑",
+      "commerceCostDesc": "По цене ↓",
+      "lastYearPassingScore": "По проходному ↑",
+      "lastYearPassingScoreDesc": "По проходному ↓"
+    }
+  }
+}

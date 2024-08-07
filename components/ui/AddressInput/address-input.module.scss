@@ -1,0 +1,65 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.input {
+  width: 100%;
+}
+
+.container {
+  position: relative;
+
+  &[aria-expanded="true"] {
+    .input {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      border-bottom: 0;
+    }
+
+    .suggestions::after {
+      margin-top: 0.25rem;
+      display: block;
+      content: "";
+      width: calc(100% - 1rem * 2);
+      height: 1px;
+      background-color: $secondary-color;
+      position: absolute;
+      top: 0;
+      left: 1rem;
+    }
+  }
+}
+
+.suggestions {
+  position: absolute;
+  background-color: #fff;
+  top: calc(100% - 4px);
+  border-radius: $border-radius-m;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  overflow: hidden;
+  left: -1px;
+  width: calc(100% + 2px);
+  border: 2px solid $accent-color;
+  border-top: 0;
+  z-index: 4;
+  padding-top: 0.5rem;
+}
+
+.suggestion {
+  @include mixins.reset-button;
+
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  text-align: left;
+  color: $primary-color;
+
+  &:hover {
+    background-color: $secondary-light-color;
+  }
+}
+
+.highlight {
+  color: $accent-color;
+  font-weight: 500;
+}

@@ -1,0 +1,25 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.card {
+  @include mixins.transition(border-color);
+
+  padding: 1rem 2rem;
+  display: flex;
+  border: 2px solid transparent;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  &:hover {
+    border-color: $accent-color;
+  }
+}
+
+.title {
+  font-size: 1.25rem;
+}
+
+.description {
+  margin-top: 0.5rem;
+}

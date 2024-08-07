@@ -1,0 +1,32 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+@use "styles/inc/functions";
+
+.highlightCollumn {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.positions {
+  display: flex;
+  align-items: center;
+  margin: 0 -1rem;
+
+  > * {
+    margin: 0 1rem;
+  }
+}
+
+.programInfolabel {
+  font-size: 16px;
+  font-weight: 500;
+  color: $secondary-color;
+}
+
+.programInfoValue{
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+  color: $primary-color;
+  margin-bottom: 0.6rem;
+}

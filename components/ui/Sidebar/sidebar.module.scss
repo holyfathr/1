@@ -1,0 +1,30 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.sidebar {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-rows: minmax(min-content, max-content);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: $primary-color;
+  font-weight: 500;
+}
+
+.active {
+  color: $accent-color;
+
+  .icon {
+    filter: $to-accent-color-filter;
+  }
+}
+
+.icon {
+  @include mixins.box(1.5rem);
+
+  margin-right: 0.75rem;
+}

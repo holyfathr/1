@@ -1,0 +1,13 @@
+{
+  "labelLogIn": "Sign in",
+  "labelReg": "Sign up",
+  "emailTitle": "Your email address",
+  "passwordTitle": "Your password",
+  "logInButton": "Sign in",
+  "forgetPassword": "Forgot your password?",
+  "signUpComment": "Don’t have an account?",
+  "socialSigIn": "Sign in with",
+  "createPassword": "Your password",
+  "confirmPassword": "Confirm your password",
+  "already": "Already have an account ?"
+}

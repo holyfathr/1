@@ -1,0 +1,10 @@
+@use "styles/inc/variables" as *;
+
+.control {
+  border-radius: $border-radius-m !important;
+  height: 2.5rem;
+}
+
+.dateTitle{
+  color: $primary-color;
+}

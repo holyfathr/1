@@ -1,0 +1,33 @@
+@use "styles/inc/variables" as *;
+
+.page {
+  display: grid;
+  grid-template-columns: 40% auto;
+  margin-left: -10rem;
+
+  @media screen and (max-width: 750px) {
+    margin-left: 0;
+    grid-template-columns: auto;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 350px;
+  padding: 0;
+  margin-left: 4rem;
+
+  @media screen and (max-width: 750px) {
+    max-width: $max-width;
+    margin-left: 0;
+  }
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+}
+
+.link {
+  margin: auto;
+}

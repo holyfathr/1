@@ -1,0 +1,55 @@
+@use "styles/inc/variables" as *;
+
+.footer {
+  background-color: $accent-color;
+  padding: 2.5rem 0;
+  color: #fff;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 1rem;
+
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: auto;
+
+    > *,
+    > *:last-child {
+      text-align: center;
+    }
+  }
+}
+
+.logo {
+  display: inline-block;
+  filter: brightness(0) invert(1);
+  height: 2rem;
+
+  @media screen and (max-width: 750px) {
+    width: 100%;
+  }
+}
+
+.almatera{
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.policies {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.email {
+  display: flex;
+  justify-content: center;
+}

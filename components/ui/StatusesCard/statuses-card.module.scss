@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.statusesWrapper {
+  display: flex;
+  transform: translateY(50%);
+  justify-content: flex-end;
+}
+
+.headerWrapper {
+  display: flex;
+  transform: translateY(50%);
+  justify-content: flex-end;
+}
+
+.header {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+
+  > *:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
+}
+
+.statuses {
+  width: 95%;
+  display: flex;
+
+  > *:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
+}

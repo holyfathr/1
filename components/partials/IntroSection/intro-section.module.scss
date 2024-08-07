@@ -1,0 +1,53 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.section {
+  display: flex;
+  padding: 2.25rem 0 18rem;
+  background-color: $primary-color;
+  color: #fff;
+  font-size: 4.5rem;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 3rem;
+  }
+
+  @media screen and (max-width: 450px) {
+    font-size: 2rem;
+  }
+}
+
+.wrapper {
+  display: grid;
+  gap: 4rem;
+  margin: auto;
+}
+
+.scrollDown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 1rem;
+  }
+}
+
+.mouse {
+  @include mixins.box(1rem, 1.5rem);
+
+  margin-left: 0.5rem;
+  filter: invert(1);
+}
+
+.phrase {
+  @include mixins.transition(opacity);
+
+  opacity: 0.25;
+  font-weight: 600;
+}
+
+.active {
+  opacity: 1;
+}

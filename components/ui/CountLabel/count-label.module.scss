@@ -1,0 +1,7 @@
+@use "styles/inc/variables" as *;
+
+.mark {
+  background: none;
+  color: $accent-color;
+  font-weight: 700;
+}

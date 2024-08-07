@@ -1,0 +1,155 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+
+.wrapper {
+  overflow: hidden;
+}
+
+.uploads {
+  display: grid;
+  grid-template-columns: 15rem auto;
+  gap: 1rem;
+
+  @media screen and (max-width: 450px) {
+    grid-template-columns: auto;
+  }
+}
+
+.upload {
+  min-height: 15rem;
+}
+
+.form {
+  display: grid;
+  gap: 3rem;
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  gap: 1.5rem 1rem;
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: auto;
+  }
+}
+
+.inlineInputs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: -1rem;
+
+  > * {
+    margin: 1rem;
+  }
+}
+
+.rowInputs {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.picker {
+  @media screen and (max-width: 450px) {
+    grid-template-columns: auto !important;
+  }
+}
+
+.submit {
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
+}
+
+.description{
+  margin-top: 1rem;
+}
+
+.contacts{
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  gap: 1rem 2.1rem;
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: auto;
+  }
+}
+
+.container{
+  display: grid;
+  gap: 1.5rem;
+}
+
+.addRow{
+  display: flex;
+}
+
+.row {
+  background-color: #f4f2ef;
+  border-radius: $border-radius-m;
+  padding: 0.75rem 2.25rem;
+  outline: none;
+  cursor: grab;
+
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+  }
+}
+
+.controls {
+  height: 12.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media screen and (max-width: 450px) {
+    margin-bottom: 1.5rem;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.index {
+  display: flex;
+  font-weight: 800;
+  color: $secondary-color;
+  font-size: 2rem;
+}
+
+.order {
+  background-color: #e3e2e2;
+  margin: 0 1.5rem;
+  padding: 0.75rem;
+  border-radius: $border-radius-s;
+
+  @media screen and (max-width: 450px) {
+    margin: 0;
+  }
+}
+
+.icon {
+  filter: $to-secondary-color-filter;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.cardWrapper {
+  width: 22rem;
+  height: 12rem;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
+}
+
+.clear{
+  @include mixins.box(3rem);
+}
+.galleryDesc{
+  background-color: #f4f2ef;
+}

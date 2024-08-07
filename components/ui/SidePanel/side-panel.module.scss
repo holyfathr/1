@@ -1,0 +1,37 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.overlay {
+  @include mixins.transition(opacity);
+
+  width: 100%;
+  height: calc(100 * var(--vh, 1vh));
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: transparentize($primary-color, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.panel {
+  @include mixins.transition(transform);
+
+  width: 90%;
+  height: 100%;
+  background-color: #fff;
+  transform: translateX(100%);
+  overflow: hidden;
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: all;
+
+  .panel {
+    transform: none;
+  }
+}

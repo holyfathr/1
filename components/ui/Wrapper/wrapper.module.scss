@@ -1,0 +1,7 @@
+@use "styles/inc/variables" as *;
+
+.wrapper {
+  width: $width;
+  max-width: $max-width;
+  margin: 0 auto;
+}

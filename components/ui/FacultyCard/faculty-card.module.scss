@@ -1,0 +1,25 @@
+@use "styles/inc/variables" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: $shadow;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.description {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: $secondary-color;
+}
+
+.button {
+  margin-top: 2rem;
+}

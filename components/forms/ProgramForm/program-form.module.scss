@@ -1,0 +1,89 @@
+@use "styles/inc/variables" as *;
+
+.info{
+  display: grid;
+  gap: 2rem;
+}
+
+
+.information {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: flex-end;
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: auto;
+  }
+}
+
+.title {
+  display: grid;
+  
+  @media screen and (max-width: 750px) {
+    grid-column: auto;
+  }
+}
+
+.description {
+  display: grid;
+  gap: 2rem;
+}
+
+.form {
+  display: grid;
+  gap: 2rem;
+}
+
+.url{
+  grid-column: 1 / 3;
+  
+  @media screen and (max-width: 750px) {
+    grid-column: auto;
+  }
+}
+
+.testing{
+  display: grid;
+  gap: 1rem;
+}
+
+.dvi {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  background-color: #f4f2ef;
+  padding: 1rem;
+  border-radius: $border-radius-m;
+
+  input {
+    background-color: inherit;
+  }
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: auto;
+  }
+}
+
+.inputs {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.threshold {
+  display: flex;
+  align-items: flex-start;
+  margin-right: 2rem;
+}
+
+.subjects {
+  width: 300px;
+  margin-right:1.5rem;
+  flex-shrink: 0;
+}
+
+.priority {
+  font-size: 2rem;
+  color: $accent-color;
+  font-weight: 700;
+}

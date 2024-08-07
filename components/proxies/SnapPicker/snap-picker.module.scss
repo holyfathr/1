@@ -1,0 +1,36 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.picker {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    height: calc(50% - 1rem);
+    z-index: 1;
+  }
+
+  &::before {
+    background: linear-gradient($accent-color, rgba($accent-color, 0.01));
+    top: 0;
+  }
+
+  &::after {
+    background: linear-gradient(rgba($accent-color, 0.01), $accent-color);
+    bottom: 0;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+
+  &:global(.is-active) {
+    border: none !important;
+    font-weight: 700;
+  }
+}

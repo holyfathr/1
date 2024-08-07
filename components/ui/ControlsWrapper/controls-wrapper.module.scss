@@ -1,0 +1,21 @@
+@use "styles/inc/variables" as *;
+
+.wrapper {
+  display: grid;
+  grid-template-rows: auto min-content;
+  box-shadow: $shadow;
+  background-color: #fff;
+}
+
+.controls {
+  padding: 1.25rem;
+  display: flex;
+  margin: -0.35rem;
+  align-items: center;
+  flex-wrap: wrap;
+
+  > * {
+    margin: 0.35rem !important;
+    flex: 1;
+  }
+}

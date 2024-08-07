@@ -1,0 +1,11 @@
+@use "styles/inc/mixins";
+
+.link {
+  @include mixins.box(1.5rem);
+
+  display: inline-flex;
+}
+
+.icon {
+  @include mixins.box(100%);
+}

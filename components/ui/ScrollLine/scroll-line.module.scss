@@ -1,0 +1,20 @@
+@use "styles/inc/mixins";
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+}
+
+.line {
+  @include mixins.hide-scrollbars;
+
+  overflow-y: scroll;
+}

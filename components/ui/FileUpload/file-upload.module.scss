@@ -1,0 +1,126 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+@use "sass:math";
+
+.upload {
+  background-color: $secondary-light-color;
+  border-radius: $border-radius-s;
+  text-align: center;
+  display: flex;
+  padding: 2rem;
+  position: relative;
+}
+
+.readOnly {
+  .input {
+    pointer-events: none;
+  }
+
+  .controls {
+    display: none;
+  }
+}
+
+.description {
+  color: $secondary-color;
+  font-size: 0.9rem;
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+  margin: auto;
+}
+
+.staple {
+  @include mixins.box(2.5rem);
+
+  margin: auto;
+}
+
+.title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  overflow: hidden;
+}
+
+.default .title {
+  font-size: 1.25rem;
+}
+
+.tiny .staple {
+  @include mixins.box(1.75rem);
+
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+}
+
+.input {
+  @include mixins.box(100%);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.preview {
+  @include mixins.box(100%);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  border-radius: $border-radius-s;
+
+  & + .content {
+    display: none;
+  }
+}
+
+.controls {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.clear,
+.crop {
+  @include mixins.box(2.15rem, 2rem);
+
+  border-radius: $border-radius-s !important;
+}
+
+// .clear {
+//   border-top-left-radius: 0 !important;
+//   border-bottom-left-radius: 0 !important;
+//   padding-right: 0.15rem;
+// }
+
+.crop {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  padding-left: 0.15rem;
+}
+
+.error {
+  .staple {
+    filter: $to-danger-color-filter;
+  }
+}
+
+.link {
+  @include mixins.box(100%);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}

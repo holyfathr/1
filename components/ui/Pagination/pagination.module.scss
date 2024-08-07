@@ -1,0 +1,53 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 -0.5rem;
+}
+
+.page {
+  margin: 0 0.5rem;
+}
+
+.link {
+  @include mixins.box(2rem);
+  @include mixins.transition(color);
+
+  cursor: pointer;
+  padding: 0.25rem 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $border-radius-xs;
+  user-select: none;
+
+  &:not(.active):hover {
+    color: $accent-color;
+  }
+}
+
+.active {
+  border: 2px solid $accent-color;
+}
+
+.icon {
+  @include mixins.box(0.75rem);
+}
+
+.prev,
+.next {
+  display: block;
+  cursor: pointer;
+  padding: 0.25rem 0.65rem;
+}
+
+.prev .icon {
+  transform: rotate(180deg);
+}
+
+.disabled {
+  display: none;
+}

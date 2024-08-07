@@ -1,0 +1,21 @@
+.input {
+  width: 100%;
+}
+
+// .picker {
+//   z-index: 4;
+//   border: 2px solid #1E60F6;
+//   border-radius: 1.75rem;
+// }
+
+// .picker :global(.react-datepicker__triangle){
+//   display: none
+// }
+
+// .picker :global(.react-datepicker__navigation--next){
+//   margin-right: 0;
+// }
+
+.picker :global(.react-datepicker__current-month) {
+  text-transform: capitalize;
+}

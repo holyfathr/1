@@ -1,0 +1,51 @@
+{
+  "searchSection": {
+    "tagline": "Apply to the university of your dreams without too much effort",
+    "searchBarPlaceholder": "Just enter the name of the university, department, program, or field of study"
+  },
+  "introSection": {
+    "scrollDown": "Scroll down",
+    "almaterIs": "Almater is",
+    "centralized": "a centralized digital platform for selecting educational paths and submitting documents to universities in Russia.",
+    "catalog": "Detailed catalog of universities and educational programs.",
+    "application": "Concurrent application for all selected programs.",
+    "tracking": "Track university admission results on one platform.",
+    "time": "Saves time and reduces stress.",
+    "reliability": "Reliability. And a user-friendly interface.",
+    "needs": "We're creating a university admissions process that fits the needs of the digital generation.",
+    "way": "And we'll be with you every step of the way.",
+    "learnMore": "Learn more about applying to universities via Almater by following our step-by-step guide below."
+  },
+  "infoSection": {
+    "step1": {
+      "title": "Registering and filling out your profile",
+      "description": "All you need to register is a valid email address. After that, you can immediately fill out your profile with your full name, the level of education you want, and what you're interested in."
+    },
+    "step2": {
+      "title": "Selecting universities and programs",
+      "description": "Choosing an educational program can take time, but we can help. With us you can easily filter your search by the parameters you need, get the information you need to compare different programs, and add your favorites directly to \"Favorites\"."
+    },
+    "step3": {
+      "title": "Filing and tracking an application",
+      "description": "It's easy — just fill out the application and submit it to all of your chosen programs at the same time! Once submitted, you can also easily keep track of your admission process and results and receive notifications about your DVI right in your personal account."
+    },
+    "step4": {
+      "title": "Choosing and enrollment to university",
+      "description": "Once you have decided on a university, apply for admission electronically through your personal account. You will need to bring the original certificate of education to the university during the academic year."
+    }
+  },
+  "applySection": {
+    "become": "I want to become a",
+    "engineer": "Engineer",
+    "programmer": "Programmer",
+    "agronomist": "Agronomist",
+    "designer": "Designer",
+    "economist": "Economist",
+    "diplomat": "Diplomat",
+    "teacher": "Teacher"
+  },
+  "footer": {
+    "privacyPolicy": "Privacy Policy",
+    "userAgreement": "User Agreement"
+  }
+}

@@ -1,0 +1,33 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.button {
+  display: flex;
+
+  &:hover {
+    .icon {
+      filter: $to-danger-color-filter;
+    }
+
+    .arrow {
+      transform: translateX(0);
+    }
+  }
+}
+
+.icon {
+  @include mixins.box(1.125rem);
+  @include mixins.transition(filter);
+
+  path {
+    stroke: $primary-color;
+    stroke-width: 2px;
+    stroke-linecap: round;
+  }
+}
+
+.arrow {
+  @include mixins.transition(transform);
+
+  transform: translateX(-2px);
+}

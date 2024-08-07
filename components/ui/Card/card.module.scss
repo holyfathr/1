@@ -1,0 +1,8 @@
+@use "styles/inc/variables" as *;
+
+.card {
+  background-color: #fff;
+  // box-shadow: $shadow;
+  border-radius: $border-radius-l;
+  padding: 2rem;
+}

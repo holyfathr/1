@@ -1,0 +1,23 @@
+@use "styles/inc/variables" as *;
+
+.table {
+  border-collapse: collapse;
+  position: relative;
+  table-layout: auto;
+  width: 100%;
+
+  td,
+  th {
+    border: 1px solid $primary-color;
+    border-collapse: collapse;
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.875rem;
+  }
+
+  tbody tr:hover {
+    background-color: $secondary-light-color;
+  }
+}

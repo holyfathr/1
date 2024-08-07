@@ -1,0 +1,66 @@
+@use "styles/inc/variables" as *;
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body,
+input,
+textarea,
+button {
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  line-height: 1.2;
+  position: relative;
+  overflow-x: hidden;
+  background-color: #FFFDF9;
+
+}
+
+strong,
+b {
+  font-weight: 600;
+}
+
+h1,
+h2 {
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+mark {
+  background-color: transparent;
+  color: $accent-color;
+}
+
+#nprogress .bar {
+  background: $accent-color !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: $accent-color !important;
+  border-left-color: $accent-color !important;
+}
+
+img {
+  user-select: none;
+  max-width: 100%;
+}

@@ -1,0 +1,35 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+@use "styles/inc/functions";
+
+:export {
+  duration: functions.strip-unit($transition-duration) * 1000;
+}
+
+.title {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: baseline;
+  width: fit-content;
+
+  &::before {
+    @include mixins.box(0.75rem);
+    @include mixins.transition(transform);
+
+    display: block;
+    content: "";
+    background: url("/images/icons/arrow-down.svg") no-repeat center;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+  }
+}
+
+.opened::before {
+  transform: rotate(180deg);
+}
+
+.content {
+  margin-top: 0.5rem;
+  margin-left: 0.75rem + 0.5rem;
+}

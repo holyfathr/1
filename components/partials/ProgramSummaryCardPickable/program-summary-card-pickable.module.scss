@@ -1,0 +1,28 @@
+@use "styles/inc/variables" as *;
+
+.controls {
+  box-shadow: $shadow;
+  outline: none;
+}
+
+.cardIsAdded {
+  box-shadow: $shadow;
+  outline: none;
+  border: 2px solid $accent-color;
+}
+
+.card {
+  box-shadow: none;
+  padding-bottom: 0 !important;
+
+  .footer{
+    display: hide;
+  }
+}
+
+.form {
+  flex: 1 1 auto;
+  display: grid;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+}

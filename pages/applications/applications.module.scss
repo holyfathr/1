@@ -1,0 +1,80 @@
+@use "styles/inc/variables" as *;
+
+.buttons {
+  display: flex;
+  margin: -0.5rem;
+
+  > * {
+    margin: 0.5rem;
+  }
+}
+
+.subsections {
+  display: grid;
+  gap: 3rem;
+}
+
+.dviGrid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: auto;
+  }
+}
+
+.danger {
+  color: $danger-color;
+  font-weight: 700;
+}
+
+.success {
+  font-weight: 700;
+  color: $success-color;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 450px) {
+    grid-template-columns: auto;
+  }
+}
+
+.file {
+  background-color: $secondary-light-color;
+  border-radius: $border-radius-s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 10rem;
+}
+
+.image {
+  object-fit: contain;
+}
+
+.docsGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: auto;
+  }
+}
+
+.doc {
+  height: 10rem;
+}
+
+.pagination {
+  margin-top: 2rem;
+}

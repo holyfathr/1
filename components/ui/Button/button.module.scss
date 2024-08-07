@@ -1,0 +1,62 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.button {
+  @include mixins.reset-button;
+  @include mixins.transition((background-color, transform, opacity, border-color));
+
+  border-radius: $border-radius-xl;
+  padding: 0.85rem 2rem;
+  text-decoration: none;
+  display: block;
+  width: fit-content;
+  text-align: center;
+  user-select: none;
+  outline: none;
+  white-space: nowrap;
+
+  &:active {
+    transform: scale(0.975);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.tiny {
+  padding: 0.5rem 1.5rem;
+}
+
+.default {
+  background-color: $accent-color;
+  color: #fff;
+  font-weight: 800;
+
+  &:hover {
+    background-color: $dark-accent-color;
+  }
+}
+
+.ghost {
+  background-color: #fff;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+}
+
+.outline {
+  border: 2px solid $accent-color;
+  color: $primary-color;
+  background-color: #fff;
+
+  &:hover {
+    color: #fff;
+    background-color: $accent-color;
+  }
+}
+
+.dangerGhost {
+  border: 1px solid $danger-color;
+  color: $danger-color;
+}

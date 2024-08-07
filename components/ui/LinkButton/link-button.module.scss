@@ -1,0 +1,33 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.button {
+  @include mixins.transition(color);
+  @include mixins.reset-button;
+
+  text-decoration: none;
+  width: fit-content;
+
+  &:disabled {
+    font-weight: 400;
+    color: $secondary-color;
+    pointer-events: none;
+  }
+}
+
+.default {
+  color: $primary-color;
+
+  &:hover {
+    color: $accent-color;
+  }
+}
+
+.accent {
+  color: $accent-color;
+  font-weight: 700;
+
+  &:hover {
+    color: $dark-accent-color;
+  }
+}

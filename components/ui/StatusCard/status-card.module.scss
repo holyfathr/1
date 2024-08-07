@@ -1,0 +1,18 @@
+@use "styles/inc/variables" as *;
+
+.card {
+  background-color: $danger-color;
+  color: #fff;
+  border-radius: $border-radius-m;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.completed {
+  background-color: $success-color;
+  color: $primary-color;
+}

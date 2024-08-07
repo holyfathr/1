@@ -1,0 +1,16 @@
+.controls {
+  display: grid;
+  gap: 1rem;
+}
+
+.buttons {
+  display: flex;
+  margin: -0.35rem;
+  align-items: center;
+  flex-wrap: wrap;
+
+  > * {
+    margin: 0.35rem !important;
+    flex: 1;
+  }
+}

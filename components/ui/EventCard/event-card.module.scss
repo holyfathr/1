@@ -1,0 +1,65 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.card {
+  width: 16rem;
+  border-radius: $border-radius-m;
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
+  box-shadow: $shadow;
+  max-height: 12.5rem;
+
+  .date {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: $accent-color;
+  }
+  
+  .description {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .link {
+    color: $accent-color;
+    text-decoration: none;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+.cardNoneShad{
+  width: 16rem;
+  border-radius: $border-radius-m;
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
+  max-height: 12.5rem;
+
+  .date {
+    font-size: 1.25rem;
+    font-weight: 800;
+  }
+  
+  .description {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .link {
+    color: $accent-color;
+    text-decoration: none;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+

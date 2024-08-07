@@ -1,0 +1,21 @@
+.searchSectionCard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  > * {
+    flex-shrink: 0;
+  }
+}
+
+.searchSection {
+  flex-grow: 1;
+}
+
+.stacking {
+  margin-top: -15rem;
+}
+
+.info {
+  padding-bottom: 11rem;
+}

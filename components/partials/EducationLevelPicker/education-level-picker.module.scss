@@ -1,0 +1,39 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.picker {
+  display: flex;
+  padding: 84px 0; // for shadow
+
+  > * {
+    // to show next card
+    max-width: calc($max-width - 2rem);
+  }
+
+  > *:not(:last-child) {
+    margin-right: 1.5rem;
+  }
+}
+
+.wrapper {
+  margin: -84px 0; // for shadow
+}
+
+.card {
+  cursor: pointer;
+  height: 100%;
+}
+
+.input {
+  @include mixins.visually-hidden;
+
+  &:checked ~ .card {
+    border-color: $accent-color;
+    font-weight: 700;
+  }
+
+  &:disabled ~ .card {
+    opacity: 0.75;
+    pointer-events: none;
+  }
+}

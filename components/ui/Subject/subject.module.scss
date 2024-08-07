@@ -1,0 +1,38 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.checkbox {
+  position: relative;
+}
+
+.content {
+  cursor: pointer;
+  user-select: none;
+  border-radius: $border-radius-xl;
+  padding: 0.75rem 2rem;
+  border: 1px solid $primary-color;
+  display: block;
+  transition-property: background-color, border-color, color;
+  transition-duration: $transition-duration;
+  text-align: center;
+
+  &:hover {
+    background-color: $accent-color;
+    border-color: $accent-color;
+    color: #fff;
+  }
+}
+
+.input {
+  @include mixins.box(0);
+
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+
+  &:checked ~ .content {
+    background-color: $accent-color;
+    border-color: $accent-color;
+    color: #fff;
+  }
+}

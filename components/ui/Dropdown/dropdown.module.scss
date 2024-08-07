@@ -1,0 +1,215 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.select {
+  --border-width: 2px;
+
+  @include mixins.reset-button;
+
+  border: var(--border-width) solid $secondary-color;
+  border-radius: $border-radius-m;
+  font-size: 0.9rem;
+  background-color: #fff;
+  color: $primary-color;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  outline: none;
+
+  &::after {
+    display: block;
+    content: "";
+    width: calc(100% - 1.25rem);
+    height: calc(var(--border-width) / 2);
+    background-color: $secondary-color;
+    position: absolute;
+    bottom: calc(var(--border-width) / -2);
+    left: 0.75rem;
+    opacity: 0;
+  }
+
+  &:focus {
+    border-color: $accent-color;
+  }
+}
+
+.readOnly {
+  pointer-events: none;
+}
+
+.placeholder {
+  @include mixins.text-ellipsis;
+
+  padding-left: 0.75rem;
+  padding-right: 1rem;
+  height: calc(2.75rem - 1px * 2);
+  line-height: calc(2.75rem - 1px * 2);
+  pointer-events: none;
+}
+
+.iconWrapper {
+  @include mixins.box(1.75rem);
+
+  border-radius: 50%;
+  display: flex;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.simple {
+  flex-direction: row-reverse;
+  justify-content: start;
+
+  .placeholder {
+    padding-right: 0.75rem;
+    padding-left: 0.5rem;
+  }
+
+  .iconWrapper {
+    margin-left: 0.5rem;
+    margin-right: 0;
+  }
+
+  .icon {
+    @include mixins.box(80%);
+  }
+}
+
+.default .iconWrapper {
+  background-color: $secondary-color;
+}
+
+.icon {
+  @include mixins.box(45%);
+
+  margin: auto;
+}
+
+.default .icon {
+  filter: invert(1);
+}
+
+.optionsWrapper {
+  position: absolute;
+  top: calc(#{0.9rem + 0.75rem * 2} + var(--border-width));
+  left: calc(-1 * var(--border-width));
+  width: calc(100% + var(--border-width) * 2);
+  background-color: #fff;
+  border-radius: $border-radius-m;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border: var(--border-width) solid $accent-color;
+  display: none;
+  z-index: 3;
+
+  &::before,
+  &::after {
+    @include mixins.box(var(--border-width), calc(2 * var(--border-width)));
+
+    position: absolute;
+    top: calc(-2 * var(--border-width));
+    background-color: $accent-color;
+    display: block;
+    content: "";
+  }
+
+  &::before {
+    left: calc(-1 * var(--border-width));
+  }
+
+  &::after {
+    right: calc(-1 * var(--border-width));
+  }
+}
+
+.options {
+  display: block;
+  overflow: auto;
+  max-height: calc(25 * var(--vh, 1vh));
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+
+  > *:not(:last-child) {
+    margin-bottom: 0.75rem;
+  }
+
+  &::after,
+  &::before {
+    display: block;
+    content: "";
+    height: 0.75rem;
+  }
+}
+
+.open {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-color: $accent-color;
+  border-bottom-color: transparent !important;
+  position: relative;
+
+  &::after {
+    opacity: 1;
+    z-index: 3;
+  }
+
+  .optionsWrapper {
+    border-top-color: transparent !important;
+    display: grid;
+  }
+}
+
+.open.flippable {
+  .icon {
+    transform: rotate(180deg);
+  }
+}
+
+.error {
+  border-color: $danger-color;
+
+  &:focus {
+    border-color: $danger-color;
+  }
+
+  .placeholder {
+    color: $danger-color;
+  }
+
+  .iconWrapper {
+    background-color: $danger-color;
+  }
+
+  .optionsWrapper {
+    border-color: $danger-color;
+
+    &::before,
+    &::after {
+      background-color: $danger-color;
+    }
+  }
+}
+
+.thin {
+  --border-width: 1px;
+
+  border-color: $primary-color;
+
+  &.open {
+    border-color: $accent-color;
+  }
+
+  &.error {
+    border-color: $danger-color;
+
+    .iconWrapper {
+      background-color: transparent;
+    }
+
+    .icon {
+      filter: $to-danger-color-filter;
+    }
+  }
+}

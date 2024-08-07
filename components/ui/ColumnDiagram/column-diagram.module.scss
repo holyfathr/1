@@ -1,0 +1,28 @@
+@use "styles/inc/variables" as *;
+
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  min-height: 12rem;
+}
+
+.diagram {
+  width: 100%;
+  display: flex;
+
+  > *:not(:last-child) {
+    margin-right: 0.75rem;
+  }
+}
+
+.legend {
+  margin-left: 2rem;
+  flex-shrink: 0;
+  margin-bottom: auto;
+}
+
+.column {
+  margin-top: auto;
+  border-radius: $border-radius-m;
+  background-color: $accent-color;
+}

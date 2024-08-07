@@ -1,0 +1,21 @@
+@use "styles/inc/variables" as *;
+
+.card {
+  padding: 1rem 2rem;
+  text-align: center;
+  border-radius: $border-radius-xl;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: grid;
+  gap: 0.25rem;
+  margin: auto;
+}
+
+.content {
+  color: $accent-color;
+  font-weight: 700;
+}

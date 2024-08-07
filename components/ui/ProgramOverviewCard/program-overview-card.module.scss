@@ -1,0 +1,16 @@
+@use "styles/inc/variables" as *;
+
+.card {
+  padding: 1.25rem;
+  border-radius: $border-radius-s;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}

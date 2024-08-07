@@ -1,0 +1,10 @@
+@use "styles/inc/variables" as *;
+
+.form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.submit {
+  width: 100%;
+}

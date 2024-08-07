@@ -1,0 +1,35 @@
+@use "styles/inc/variables" as *;
+
+.actions {
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+  }
+}
+
+.description {
+  margin-left: 1.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: $accent-color;
+
+  @media screen and (max-width: 450px) {
+    margin-left: 0;
+    margin-top: 0.75rem;
+  }
+}
+
+.descriptionAlternate {
+  color: $danger-color;
+}
+
+.button {
+  width: 30%;
+  min-width: fit-content;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
+}

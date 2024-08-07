@@ -1,0 +1,10 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.button {
+  @include mixins.box(1.5rem);
+
+  display: inline-block;
+  vertical-align: middle;
+  filter: $to-accent-color-filter;
+}

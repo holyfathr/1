@@ -1,0 +1,13 @@
+@use "styles/inc/mixins";
+
+.toggle {
+  @include mixins.reset-button;
+
+  display: flex;
+}
+
+.icon {
+  @include mixins.box(1rem);
+
+  margin: auto;
+}

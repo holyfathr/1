@@ -1,0 +1,118 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+@use "styles/inc/functions";
+
+.wrapper{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  box-shadow: $shadow;
+  border-radius: $border-radius-l
+}
+
+.breadcrumbs {
+  font-size: 0.9rem;
+}
+
+.title {
+  @include mixins.transition(color);
+
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: $primary-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $accent-color;
+  }
+}
+
+.tags {
+  margin: 0.75rem 0 1.25rem;
+  font-size: 0.9rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: -0.5rem {
+    top: 1rem;
+  }
+
+  > * {
+    margin: 0.5rem;
+    flex: 1;
+  }
+}
+
+.application {
+  @include mixins.box(100%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.dvi {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.form {
+  font-size: 0.8rem;
+}
+
+.highlightCollumn {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.positions {
+  display: flex;
+  align-items: center;
+  margin: 0 -1rem;
+
+  > * {
+    margin: 0 1rem;
+  }
+}
+
+.programInfolabel {
+  font-size: 16px;
+  font-weight: 500;
+  color: $secondary-color;
+}
+
+.programInfoValue{
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+  color: $primary-color;
+  margin-bottom: 0.6rem;
+}
+
+.button{
+  width: 14rem;
+}
+
+.rejectButton{
+  width: 14rem;
+  height: 50px;
+  background-color: $danger-color;
+  font-weight: 500;
+
+  &:hover {
+    background-color: #cc3f3f;
+  }
+}

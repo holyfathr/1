@@ -1,0 +1,65 @@
+@use "styles/inc/variables" as *;
+
+.page {
+  display: grid;
+  grid-template-columns: 40% auto;
+  margin-left: -10rem;
+
+  @media screen and (max-width: 750px) {
+    margin-left: 0;
+    grid-template-columns: auto;
+  }
+}
+
+.wrapper {
+  width: calc(100% - 4rem);
+  padding: 0;
+  margin-left: 4rem;
+
+  @media screen and (max-width: 750px) {
+    width: 100%;
+    max-width: $max-width;
+    margin-left: 0;
+  }
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+}
+
+.link {
+  color: $secondary-color;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.social {
+  width: calc(50% - 1.25rem / 2);
+
+  @media screen and (max-width: 750px) {
+    width: 100%;
+  }
+}
+
+.illustration {
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
+}
+
+.exist{
+  display: grid;
+  gap: 1rem;
+  width: calc(50% - 1.25rem / 2);
+
+  @media screen and (max-width: 750px) {
+    width: 100%;
+  }
+}
+
+.checkbox{
+  margin: auto;
+}

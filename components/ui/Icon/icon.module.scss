@@ -1,0 +1,8 @@
+@use "styles/inc/mixins";
+
+.icon {
+  @include mixins.box(1.5rem);
+
+  display: flex;
+  position: relative;
+}

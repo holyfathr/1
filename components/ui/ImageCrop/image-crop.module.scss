@@ -1,0 +1,21 @@
+@use "styles/inc/mixins";
+
+.crop {
+  margin-bottom: 2rem;
+  max-height: calc(50 * var(--vh, 1vh));
+
+  :global(.cropper-drag-box) {
+    opacity: 0.75;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -0.25rem;
+
+  > * {
+    margin: 0.25rem;
+  }
+}

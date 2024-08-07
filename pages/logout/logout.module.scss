@@ -1,0 +1,50 @@
+@use "styles/inc/variables" as *;
+
+.page {
+  display: grid;
+  grid-template-columns: 40% auto;
+  margin-left: -10rem;
+
+  @media screen and (max-width: 750px) {
+    margin-left: 0;
+    grid-template-columns: auto;
+  }
+}
+
+.wrapper {
+  width: calc(100% - 4rem);
+  padding: 0;
+  margin-left: 4rem;
+
+  @media screen and (max-width: 750px) {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+.header {
+  @media screen and (max-width: 750px) {
+    justify-content: center;
+  }
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+  width: calc(50% - 1.25rem / 2);
+
+  @media screen and (max-width: 750px) {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.illustration {
+  @media screen and (max-width: 750px) {
+    margin-bottom: 1rem;
+  }
+}
+
+.cancel {
+  margin: auto;
+}

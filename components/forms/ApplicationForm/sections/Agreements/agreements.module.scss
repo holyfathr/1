@@ -1,0 +1,10 @@
+.checkboxes {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(min-content, max-content);
+
+  @media screen and (max-width: 450px) {
+    grid-template-columns: auto;
+  }
+}

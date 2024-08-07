@@ -1,0 +1,15 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.form {
+  @include mixins.transition(transform);
+
+  padding: 0.35rem 0.65rem;
+  border-radius: $border-radius-m;
+  border: 1px solid $secondary-color;
+  white-space: nowrap;
+  display: inline-block;
+  color: $secondary-color;
+  font-weight: 600;
+  font-size: 0.9rem;
+}

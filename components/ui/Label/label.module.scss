@@ -1,0 +1,21 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.label {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  @include mixins.transition(color);
+
+  color: $secondary-color;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.error {
+  .title {
+    color: $danger-color;
+  }
+}

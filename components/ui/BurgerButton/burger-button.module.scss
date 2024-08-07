@@ -1,0 +1,8 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.button {
+  @include mixins.box(2rem);
+
+  border-radius: 5px;
+}

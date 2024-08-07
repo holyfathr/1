@@ -1,0 +1,14 @@
+@use "styles/inc/variables" as *;
+
+.summary {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.result {
+  background-color: $success-color;
+  border-radius: $border-radius-m;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+}

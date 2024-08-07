@@ -1,0 +1,30 @@
+.breadcrumbs {
+  display: flex;
+  margin: 0 -0.25rem;
+  flex-wrap: wrap;
+  width: fit-content;
+
+  &.underline {
+    padding-bottom: 0.3rem;
+    border-bottom: solid 2px #1E60F6;
+  }
+
+  &.underline-custom {
+    padding-bottom: 0.3rem;
+    border-bottom: solid 2px;
+  }
+
+  > * {
+    margin: 0 0.25rem;
+  }
+}
+
+.item {
+  display: flex;
+
+  &:not(:last-child)::after {
+    display: block;
+    content: "/";
+    margin-left: 0.5rem;
+  }
+}

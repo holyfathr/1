@@ -1,0 +1,17 @@
+.filter {
+  width: 100%;
+}
+
+.list {
+  display: grid;
+  gap: 1rem;
+}
+
+.footer {
+  display: grid;
+  gap: 0.75rem;
+
+  > * {
+    width: 100%;
+  }
+}

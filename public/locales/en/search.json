@@ -1,0 +1,44 @@
+{
+  "pageTitle": "Search",
+  "educationalProgramSearch": "Educational program search",
+  "filters": {
+    "label": "Filters",
+    "loading": "Loading filters...",
+    "educationForm": "Education form",
+    "educationFormOptions": {
+      "fullTime": "Full-time",
+      "partTime": "Part-time",
+      "absentee": "Absentee"
+    },
+    "educationLevel": "Education level",
+    "educationLevelOptions": {
+      "bachelor": "Bachelor",
+      "master": "Master",
+      "postgraduate": "Postgraduate",
+      "specialist": "Specialist"
+    },
+    "educationLanguage": "Instruction language",
+    "educationLanguageOptions": {
+      "ru": "Russian",
+      "en": "English"
+    },
+    "facultyCity": "City",
+    "fieldOfStudy": "Field of study",
+    "cost": "Cost",
+    "extended": "Extended",
+    "extendedOptions": {
+      "providingVisa": "Military department",
+      "migrationSupport": "Scholarships and discounts",
+      "isDormitoryAvailabel": "Dormitory"
+    },
+    "ordering": "Ordering",
+    "orderingOptions": {
+      "title": "Title A→Z",
+      "titleDesc": "Title Z→A",
+      "commerceCost": "Cost ↑",
+      "commerceCostDesc": "Cost ↓",
+      "lastYearPassingScore": "Passing score ↑",
+      "lastYearPassingScoreDesc": "Passing score ↓"
+    }
+  }
+}

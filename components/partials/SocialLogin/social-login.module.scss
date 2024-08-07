@@ -1,0 +1,18 @@
+@use "styles/inc/mixins";
+
+.login {
+  display: grid;
+  gap: 1rem;
+}
+
+.items {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  width: fit-content;
+  margin: auto;
+}
+
+.icon {
+  @include mixins.box(3rem);
+}

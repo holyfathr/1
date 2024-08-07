@@ -1,0 +1,54 @@
+@use "styles/inc/variables" as *;
+
+.form {
+  display: grid;
+  gap: 3rem;
+}
+
+.section {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.description {
+  width: 500px;
+  max-width: $max-width;
+  margin-top: 0.5rem;
+}
+
+.inputs {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: flex-end;
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 450px) {
+    grid-template-columns: auto;
+  }
+}
+
+.education{
+  display: flex;
+  gap: 1.5rem;
+}
+
+.submit {
+  width: 352px;
+  
+  // avoid shadow overflow
+  position: relative;
+  z-index: 1;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
+}

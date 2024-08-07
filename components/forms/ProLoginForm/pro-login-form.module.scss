@@ -1,0 +1,12 @@
+@use "styles/inc/variables" as *;
+
+.form {
+  display: grid;
+  gap: 1.25rem;
+  width: 300px;
+  max-width: $max-width;
+}
+
+.submit {
+  width: 100%;
+}

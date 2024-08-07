@@ -1,0 +1,27 @@
+@use "styles/inc/variables" as *;
+
+.container {
+  margin: -0.5rem;
+  width: unset;
+}
+
+.character {
+  background-color: #fff;
+  width: 4rem;
+  height: 4.5rem;
+  margin: 0.5rem;
+  padding: 1rem 0;
+  border: 2px solid $accent-color;
+  flex-grow: 0 !important;
+  flex-basis: auto !important;
+  font-size: 1.75rem;
+  border-radius: 10px;
+  font-weight: 700;
+  color: $accent-color;
+}
+
+.inactive {
+  border-color: $secondary-light-color;
+  color: $secondary-light-color;
+  opacity: 0.5;
+}

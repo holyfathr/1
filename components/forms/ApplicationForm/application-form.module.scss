@@ -1,0 +1,92 @@
+@use "styles/inc/variables" as *;
+
+.subsections {
+  display: grid;
+  gap: 3rem;
+}
+
+.program{
+  display: grid;
+  gap: 1rem;
+}
+.text{
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+}
+
+
+.buttons {
+  display: grid;
+  width: fit-content;
+  min-width: 100%;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  // avoid shadow overflow
+  position: relative;
+  z-index: 1;
+
+  > * {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 450px) {
+    grid-template-columns: auto;
+    width: 100%;
+
+    > *:last-child {
+      grid-row: 1;
+    }
+  }
+}
+
+.verticalButtons {
+  margin: auto;
+  width: 300px;
+  display: grid;
+  gap: 1rem;
+
+  > * {
+    width: 100%;
+    margin: auto !important;
+  }
+}
+
+.warning {
+  color: $secondary-color;
+  margin-top: -1.5rem;
+}
+
+.codeTitle {
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.code {
+  justify-content: center;
+}
+
+.wizard {
+  padding-top: 2.25rem;
+  padding-bottom: 2rem;
+  border-radius: $border-radius-m;
+  box-shadow: $shadow;
+  overflow: auto;
+  max-width: $max-width;
+}
+
+.bold{
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+}
+
+.link{
+  text-decoration: underline;
+}
+
+.list{
+  list-style: disc;
+  display: grid;
+  gap: 1rem;
+  padding-left: 1.5rem;
+}

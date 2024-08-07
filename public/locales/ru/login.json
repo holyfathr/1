@@ -1,0 +1,13 @@
+{
+  "labelLogIn": "Вход",
+  "labelReg": "Регистрация",
+  "emailTitle": "Введи свой E-mail",
+  "passwordTitle": "Введи пароль",
+  "logInButton": "Войти",
+  "forgetPassword": "Забыли пароль ?",
+  "signUpComment": "Нет аккаунта?",
+  "socialSigIn": "Через соцсети",
+  "createPassword": "Придумай пароль",
+  "confirmPassword": "Подтверди пароль",
+  "already": "Уже зарегистрирован(а)?"
+}

@@ -1,0 +1,16 @@
+{
+  "apply": "Применить",
+  "resetAll": "Сбросить все",
+  "defaultPageTitle": "Almater — поступи в вуз мечты без лишних усилий",
+  "customPageTitle": "{{title}} — Almater",
+  "step": "Шаг",
+  "tryNow": "Попробовать сейчас",
+  "searchBarPlaceholder": "Просто введи название вуза, факультета, программы или направления",
+  "from": "От",
+  "to": "До",
+  "loadingText": "Загрузка...",
+  "nothingFound": "Ничего не найдено.",
+  "readMore": "Подробнее",
+  "perYear": "в год",
+  "save": "Сохранить изменения"
+}

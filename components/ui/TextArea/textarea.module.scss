@@ -1,0 +1,21 @@
+@use "styles/inc/variables" as *;
+
+.textarea {
+  border: 1px solid $primary-color;
+  border-radius: $border-radius-m;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  background-color: #fff;
+  min-height: 15rem;
+  resize: vertical;
+  outline: none;
+
+  &::placeholder {
+    color: $secondary-color;
+  }
+
+  &:focus {
+    border-color: $accent-color;
+    box-shadow: 0 0 0 1px $accent-color;
+  }
+}

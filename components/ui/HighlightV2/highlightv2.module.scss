@@ -1,0 +1,19 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+@use "styles/inc/functions";
+
+.highlight{
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: $secondary-color;
+}
+
+.value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: $primary-color;
+}

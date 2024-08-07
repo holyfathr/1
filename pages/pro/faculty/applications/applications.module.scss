@@ -1,0 +1,64 @@
+.pagination {
+  margin-top: 2rem;
+}
+
+.page {
+  display: grid;
+  gap: 2rem;
+}
+
+.back {
+  margin-top: 2rem;
+  width: 30%;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+.header {
+  .headerText {
+    display: flex;
+    width: 522px;
+    height: 48px;
+    background-color: white;
+    border-radius: 12px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: -20px;
+    box-shadow: 0 0 84px -20px #d6d2cc;
+    p {
+      font-size: 20px;
+      font-weight: 500;
+      color: #1d1d1d;
+    }
+  }
+}
+
+.rejBtn {
+  display: flex;
+  width: 182px;
+  height: 62px;
+  border-radius: 36px;
+  background-color: #eb5757;
+  border: none;
+  color: white;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.rejBtn:hover {
+  background-color: darken($color: #eb5757, $amount: 10);
+}
+
+.application {
+  display: grid;
+  gap: 2rem;
+}

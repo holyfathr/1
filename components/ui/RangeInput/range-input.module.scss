@@ -1,0 +1,25 @@
+@use "styles/inc/variables" as *;
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+
+  &:first-child::after {
+    display: block;
+    content: "—";
+    margin: 0 0.25rem;
+    color: $secondary-color;
+  }
+}
+
+.input {
+  width: 100%;
+  border-radius: $border-radius-s;
+  border-color: $secondary-color;
+}

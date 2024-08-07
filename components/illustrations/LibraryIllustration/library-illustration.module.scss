@@ -1,0 +1,47 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.balloon {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  display: block;
+  background-color: $accent-color;
+  border-radius: 50%;
+}
+
+.largeWrapper {
+  position: absolute;
+  left: 65%;
+  top: 2.5%;
+}
+
+.mediumWrapper {
+  position: absolute;
+  top: 23%;
+  left: 10%;
+}
+
+.smallWrapper {
+  position: absolute;
+  left: 30%;
+  top: 2.5%;
+}
+
+.large {
+  @include mixins.box(8rem);
+}
+
+.medium {
+  @include mixins.box(4rem);
+}
+
+.small {
+  @include mixins.box(1rem);
+}

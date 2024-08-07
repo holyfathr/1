@@ -1,0 +1,44 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.colors {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.option {
+  @include mixins.transition(transform);
+
+  position: relative;
+  height: 12rem;
+  border-radius: $border-radius-m;
+
+  &:hover {
+    transform: scale(1.0125);
+  }
+}
+
+.radio {
+  @include mixins.box(100%);
+
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.icon {
+  @include mixins.box(3.25rem, 2.25rem);
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: invert(100%);
+  pointer-events: none;
+  display: none;
+}
+
+.radio:checked ~ .icon {
+  display: block;
+}

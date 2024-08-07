@@ -1,0 +1,11 @@
+@use "styles/inc/variables" as *;
+
+.filters {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.active {
+  border-color: $accent-color;
+}

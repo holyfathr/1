@@ -1,0 +1,43 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.picker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: -0.25rem;
+
+  > * {
+    margin: 0.25rem !important;
+  }
+}
+
+.label {
+  @include mixins.transition(background-color);
+
+  font-size: 0.9rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid $accent-color;
+  border-radius: $border-radius-m;
+  cursor: pointer;
+  display: block;
+  user-select: none;
+
+  &:hover {
+    background-color: $accent-color;
+    color: #fff;
+  }
+}
+
+.input {
+  display: none;
+
+  &:checked ~ .label {
+    background-color: $accent-color;
+    color: #fff;
+  }
+}
+
+.readOnly {
+  pointer-events: none;
+}

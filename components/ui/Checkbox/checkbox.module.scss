@@ -1,0 +1,91 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.checkbox {
+  @include mixins.transition(color);
+
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: flex-start;
+  width: fit-content;
+
+  &:hover,
+  &:focus-within {
+    color: $accent-color;
+
+    .mark {
+      border-color: $accent-color;
+    }
+
+    .icon {
+      filter: $to-accent-color-filter;
+    }
+  }
+}
+
+.readOnly {
+  pointer-events: none;
+
+  .mark {
+    border: 0;
+  }
+}
+
+.mark {
+  @include mixins.box(1.25rem);
+  @include mixins.transition(border-color);
+
+  border: 1px solid $primary-color;
+  border-radius: $border-radius-xs;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 0.5rem;
+}
+
+.icon {
+  @include mixins.transition(filter);
+
+  display: none;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.input {
+  @include mixins.box(0);
+
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+
+  &:checked ~ .mark .icon {
+    display: block;
+  }
+}
+
+.error {
+  color: $danger-color;
+
+  .mark {
+    border-color: $danger-color;
+  }
+}
+
+.outline {
+  border: 1px solid $primary-color;
+  border-radius: $border-radius-m;
+  font-size: 0.9rem;
+  width: 100%;
+  height: 2.75rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 0.75rem;
+}

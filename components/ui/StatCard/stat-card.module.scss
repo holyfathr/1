@@ -1,0 +1,40 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.card {
+  display: flex;
+}
+
+.stat {
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+.iconWrapper {
+  @include mixins.box(1.5rem);
+  display: flex;
+  margin-right: 0.75rem;
+}
+
+.icon {
+  margin:0;
+}
+
+.infoWrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: $primary-color;
+  line-height: 19.2px;
+}
+
+.value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: $accent-color;
+  line-height: 19.2px;
+}

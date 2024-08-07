@@ -1,0 +1,27 @@
+@use "styles/inc/variables" as *;
+
+.splitter {
+  display: flex;
+  align-items: center;
+  color: $secondary-color;
+
+  &::before,
+  &::after {
+    border-top: solid 2px $secondary-color;
+    content: "";
+    display: block;
+    width: 100%;
+  }
+
+  &::before {
+    margin-right: 0.5rem;
+  }
+
+  &::after {
+    margin-left: 0.5rem;
+  }
+}
+
+.text {
+  flex-shrink: 0;
+}

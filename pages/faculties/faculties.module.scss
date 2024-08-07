@@ -1,0 +1,10 @@
+.page {
+  display: grid;
+  gap: 2rem;
+}
+
+.breadcrumbs {
+  @media screen and (max-width: 750px) {
+    justify-content: center;
+  }
+}

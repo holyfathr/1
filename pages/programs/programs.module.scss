@@ -1,0 +1,8 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.page {
+  width: $width-landing;
+  display: grid;
+  gap: 2.125rem;
+}

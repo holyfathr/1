@@ -1,0 +1,48 @@
+@use "styles/inc/variables" as *;
+
+.form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.inputs {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media screen and (max-width: 450px) {
+    grid-template-columns: auto;
+  }
+}
+
+.button {
+  width: calc((100% - 1.25rem) / 2);
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
+}
+
+.error{
+  display: flex;
+  flex-direction: row;
+
+  span{
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: auto;
+    color: $danger-color;
+  }
+}
+
+.check{
+  display: flex;
+  flex-direction: row;
+
+  span{
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: auto;
+    color: $success-color;
+  }
+}

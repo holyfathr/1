@@ -1,0 +1,66 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.bar {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  border: 2px solid $secondary-color;
+
+  &:focus {
+    box-shadow: none;
+
+    ~ .button {
+      background-color: $accent-color;
+    }
+  }
+}
+
+.borderless {
+  .input {
+    border: none;
+  }
+
+  .button {
+    background-color: $accent-color;
+  }
+}
+
+.button {
+  @include mixins.box(2rem);
+  @include mixins.reset-button;
+
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: $secondary-color;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overflow {
+  position: absolute;
+  height: calc(100% - 4px);
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1) 100%
+  );
+  content: "";
+  display: block;
+  top: 2px;
+  right: 2rem;
+  pointer-events: none;
+}
+
+.icon {
+  @include mixins.box(1.25rem);
+
+  filter: invert(1);
+}

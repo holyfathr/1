@@ -1,0 +1,25 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.wrapper {
+  position: relative;
+}
+
+.overlay {
+  @include mixins.box(100%);
+  @include mixins.transition(opacity);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $secondary-light-color;
+  opacity: 0;
+  pointer-events: none;
+  padding: 1.5rem;
+  z-index: 2;
+}
+
+.visible .overlay {
+  opacity: 1;
+  pointer-events: all;
+}

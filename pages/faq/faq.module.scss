@@ -1,0 +1,29 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+@use "styles/inc/functions";
+
+.content{
+  width: $width;
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.divider {
+    width: $width;
+    height: 2px;
+    background-color: $secondary-color;
+    content: "";
+    align-self: stretch;
+    margin: 1.2rem 0rem;
+    flex-shrink: 0;
+}
+
+.writeUs{
+  font-size: 1rem;
+  margin-top: 1.5rem;
+}
+
+.writeUsUrl{
+  color: $accent-color;
+}

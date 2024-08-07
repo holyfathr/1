@@ -1,0 +1,49 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  width: fit-content;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.input {
+  position: relative;
+  width: 4rem;
+  height: 2rem;
+  border: 2px solid $secondary-color;
+  border-radius: $border-radius-m;
+  appearance: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+
+  &::after {
+    @include mixins.box(1.5rem);
+    @include mixins.transition(all);
+
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0.25rem;
+    background-color: $secondary-color;
+    border-radius: 50%;
+    transform: translate(0, -50%);
+  }
+
+  &:checked {
+    border-color: $accent-color;
+
+    &::after {
+      left: 100%;
+      transform: translate(calc(-100% - 0.25rem), -50%);
+      background-color: $accent-color;
+    }
+  }
+}

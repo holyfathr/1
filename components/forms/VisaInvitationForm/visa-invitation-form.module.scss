@@ -1,0 +1,47 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.wrapper{
+  display: grid;
+  gap: 1rem;
+}
+.form{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  max-height: 12rem;
+}
+
+.file{
+  width: 22rem;
+}
+
+.textArea{
+  width: 47rem;
+  
+  .textarea {
+    border: 1px solid $primary-color;
+    border-radius: $border-radius-m;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    background-color: #fff;
+    min-height: 11rem;
+    resize: vertical;
+    outline: none;
+  
+    &::placeholder {
+      color: $secondary-color;
+    }
+  
+    &:focus {
+      border-color: $accent-color;
+      box-shadow: 0 0 0 1px $accent-color;
+    }
+  }
+  
+}
+
+.buttons{
+  display: flex;
+  gap: 0.75rem;
+}

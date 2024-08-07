@@ -1,0 +1,28 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.modalOverlay {
+  @include mixins.box(100%);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 4;
+}
+
+.modal {
+  outline: none;
+  border-radius: $border-radius-l;
+  padding: 3.5rem;
+  background-color: #fff;
+  min-width: min(500px, $max-width);
+  max-width: $max-width;
+  margin: auto;
+  max-height: calc(90 * var(--vh, 1vh));
+  overflow: auto;
+  scrollbar-width: none;
+}

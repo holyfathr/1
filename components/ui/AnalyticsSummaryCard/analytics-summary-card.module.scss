@@ -1,0 +1,19 @@
+@use "styles/inc/variables" as *;
+
+.card {
+  border-radius: $border-radius-s;
+  padding: 1.5rem 1rem;
+  display: grid;
+  gap: 0.5rem;
+  grid-auto-rows: minmax(min-content, max-content);
+  box-shadow: $shadow;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.discription{
+  font-weight:500;
+}

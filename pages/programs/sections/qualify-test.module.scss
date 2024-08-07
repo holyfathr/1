@@ -1,0 +1,43 @@
+@use "styles/inc/variables" as *;
+
+.qualifyingTest {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+
+  @media screen and (max-width: 750px) {
+    display: grid;
+    gap: 1rem;
+  }
+}
+
+.title{
+  color: $primary-color;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.label{
+  color: $primary-color;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.tests{
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.test{
+  background-color: #fff;
+  padding: 0.8rem;
+  border-radius: $border-radius-m;
+  box-shadow: 0px 0px 84px 2px #D6D2CC;
+  font-weight: 700;
+}
+
+.description{
+  font-size: 1rem;
+  font-weight: 500;
+}

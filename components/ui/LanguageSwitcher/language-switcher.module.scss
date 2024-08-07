@@ -1,0 +1,27 @@
+@use "styles/inc/variables" as *;
+
+.language-switcher {
+  display: inline-block;
+  font-size: 16px;
+}
+
+.button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: black;
+  margin: 0 5px;
+}
+
+.active{
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: black;
+  margin: 0 5px;
+  color: $accent-color;
+  font-weight: 700;
+}

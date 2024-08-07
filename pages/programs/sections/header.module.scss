@@ -1,0 +1,22 @@
+@use "styles/inc/mixins";
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  @media screen and (max-width: 750px) {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
+
+.favourite {
+  @include mixins.box(2rem);
+
+  flex-shrink: 0;
+
+  @media screen and (max-width: 750px) {
+    margin-bottom: 2rem;
+  }
+}

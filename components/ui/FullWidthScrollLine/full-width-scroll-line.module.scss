@@ -1,0 +1,19 @@
+@use "styles/inc/variables" as *;
+@use "sass:math";
+
+.line {
+  display: flex;
+
+  > * {
+    flex-shrink: 0;
+  }
+
+  &::before,
+  &::after {
+    display: block;
+    content: "";
+    width: calc(50vw - min(#{$max-width}, #{$width}) / 2);
+    height: auto;
+    flex-shrink: 0;
+  }
+}

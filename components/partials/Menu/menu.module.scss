@@ -1,0 +1,50 @@
+@use "styles/inc/variables" as *;
+@use "styles/inc/mixins";
+
+.menu {
+  display: flex;
+  align-items: center;
+  margin: -0.5rem -2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  > * {
+    margin: 0.5rem 2rem !important;
+  }
+}
+
+.link {
+  @include mixins.transition(color);
+
+  text-decoration: none;
+  color: $primary-color;
+  font-size: 0.9rem;
+  text-align: center;
+  position: relative;
+
+  &:hover {
+    color: $accent-color;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.active,
+.bold {
+  color: $accent-color;
+  font-weight: 700;
+}
+
+.bold {
+  visibility: hidden;
+}

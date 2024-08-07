@@ -1,0 +1,16 @@
+{
+  "apply": "Apply",
+  "resetAll": "Reset all",
+  "defaultPageTitle": "Almater - apply to the university of your dreams",
+  "customPageTitle": "{{title}} — Almater",
+  "step": "Step",
+  "tryNow": "Try now",
+  "searchBarPlaceholder": "Just enter the name of the university, department, program, or field of study",
+  "from": "From",
+  "to": "To",
+  "loadingText": "Loading...",
+  "nothingFound": "Nothing found.",
+  "readMore": "Read more",
+  "perYear": "per year",
+  "save": "Save"
+}
