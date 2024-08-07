@@ -33,7 +33,7 @@ const RejectModal = ({ application, onDelete, closeModal }) => {
 
 const Controls = ({styles, closeModal, onDelete}) => (
   <>
-    <Button variant="ghost" onClick={closeModal}>
+    <Button tton variant="ghost" onClick={closeModal}>
       Отменить
     </Button>
     

@@ -25,7 +25,6 @@ const personalInfoStep = z.object({
     citizenship: z.string().min(1),
     diploma_image_link: z.custom(isFile).or(z.string().url()).nullish(),
     doc_image_link: z.custom(isFile).or(z.string().url()).nullish(),
-    education_level: z.string().min(1).nullish(),
   }),
   // phone_number: z.string().min(1),
   date_of_birth: z.string().refine((date) => !isNaN(Date.parse(date))),
@@ -34,11 +33,25 @@ const personalInfoStep = z.object({
   doc_country_issued: z.string().min(1),
   doc_number: z.string().regex(/^\d{2} \d{2} \d{6}$/),
   doc_date_issued: z.string().refine((date) => !isNaN(Date.parse(date))),
+  education_level: z.string().min(1).nullish(),
   diploma_date_issued: z
     .string()
     .refine((date) => !isNaN(Date.parse(date)))
     .nullish(),
 })
+// .refine(async (data) => {
+//   for (const program of data.programs) {
+//     const canApply = await canApplyProgram(program, data.exam_results)
+
+//     if (!canApply) {
+//       const fullProgram = await getProgram({ id: program.id })
+//       toast.error(`Ты не проходишь на программу ${formatProgram(fullProgram)}`)
+//       return false
+//     }
+//   }
+
+//   return true
+// })
 
 const agreementStep = z.object({
   agreements: z.literal(true),

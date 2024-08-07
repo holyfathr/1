@@ -2,7 +2,6 @@ import { useMemo } from "react"
 import { useMutation, useQueryClient } from "react-query"
 import toast from "react-hot-toast"
 import { useRouter } from "next/router"
-import { format } from 'date-fns';
 
 import ApplicationForm from "components/forms/ApplicationForm"
 
@@ -49,8 +48,6 @@ const ApplicationFormContainer = () => {
 
     const alert = toast.loading("Создание заявок...")
 
-    const currentDate = format(new Date(), 'yyyy-MM-dd');
-
     for (let i = 0; i < programs.length; i++) {
       try {
         const applicationData = {
@@ -59,13 +56,13 @@ const ApplicationFormContainer = () => {
           priority: i + 1,
           has_agreement: application.has_agreement || false,
           entrant_status: application.entrant_status || "P",
-          university_status: application.university_status || "P",
+          university_status: application.university_status || "D",
           position: application.position || "string",
           update_date: application.update_date || "2022-01-01",
           visa_city: application.visa_city || "A",
           is_final: application.is_final || true,
           withdrawn: application.withdrawn || false,
-          date: currentDate,
+          date: application.date || "2022-01-01",
           name: entrant.name || "Иван",
           surname: entrant.surname || "Иванов",
           middle_name: entrant.middle_name || "Иванович",
@@ -78,7 +75,7 @@ const ApplicationFormContainer = () => {
           doc_country_issued: application.doc_country_issued || "Russia",
           doc_number: application.doc_number || "70707777",
           doc_image_link: entrant.doc_image_link || "string",
-          education_level: entrant.education_level || "U",
+          education_level: application.education_level || "U",
           diploma_image_link: entrant.diploma_image_link || "string",
           diploma_date_issued: application.diploma_date_issued || "2022-01-01",
           russian_knowledge_level: entrant.russian_knowledge_level || "A1",

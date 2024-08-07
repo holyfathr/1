@@ -90,6 +90,7 @@ const ApplicationForm = ({ onSubmit, defaultValues, phoneVerified }) => {
         data-dirty={methods.formState.isDirty}
         onSubmit={methods.handleSubmit(onNext)}
       >
+        {/* <ManyDocumentsModal /> */}
 
         {step === 0 && <Program onNext={methods.handleSubmit(onNext)} />}
         {step === 1 && (

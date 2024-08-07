@@ -17,8 +17,8 @@ const schema = z.object({
   dvis: z.array(
     z.object({
       type: z.string().min(1),
-      description: z.string().nullish(),
-      exams: z.array(z.number()).nullish(),
+      description: z.string().nullable(),
+      exams: z.array(z.number()).nullable(),
     })
   )
 })

@@ -23,6 +23,8 @@
 }
 
 .header {
+  display: flex;
+  flex-direction: column;
   .headerText {
     display: flex;
     width: 522px;
@@ -31,7 +33,6 @@
     border-radius: 12px;
     align-items: center;
     justify-content: flex-start;
-    margin-top: -20px;
     box-shadow: 0 0 84px -20px #d6d2cc;
     p {
       font-size: 20px;

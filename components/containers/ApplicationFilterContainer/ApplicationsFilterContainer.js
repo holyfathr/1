@@ -16,7 +16,7 @@ const ApplicationsFilterContainer = () => {
         {value: 'V', label: 'Отправлено визовое приглашение'}
       ]}/>
       <Select placeholder="Статус абитуриента" options={[
-        {value: 'A', label: 'Получено согласие'},
+        {value: 'O', label: 'Получено согласие'},
         {value: 'W', label: 'Отозвана'},
         {value: 'P', label: 'Ожидается ответ абитуриента '}
       ]}/>

@@ -3,7 +3,7 @@ import Label from "components/ui/Label";
 import Subsection from "components/ui/Subsection";
 import FileUploadContainer from "components/containers/FileUploadContainer";
 
-import { getCitizenship, getEducationLevel } from "helpers/enums";
+import { getCitizenship } from "helpers/enums";
 import { formatDateYear, formatDate } from "helpers/language";
 
 import styles from "./application-review.module.scss";
@@ -75,7 +75,7 @@ const Documents = ({ overview, application }) => {
             )}
           />
           <Label title="Уровень имеющегося образования*">
-            {getEducationLevel(application.entrant.education_level)}
+            {application.entrant.education_level}
           </Label>
           <Label title="Год выдачи*">
             {formatDateYear(application.entrant.diploma_date_issued)}

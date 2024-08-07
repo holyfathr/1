@@ -88,17 +88,6 @@ export const getCitizenship = (value) => {
   }
 }
 
-export const getEducationLevel = (value) => {
-  switch (value) {
-    case "M":
-      return "Среднее специальное образование"
-    case "H":
-      return "Высшее образование"
-    case "O":
-      return "Другое"
-  }
-}
-
 // export const getLevelOfEducationDegreeTitle = (lng, value) => {
 //   if (lng === "ru") {
 //     switch (value) {

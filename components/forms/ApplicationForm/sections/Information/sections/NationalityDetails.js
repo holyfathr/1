@@ -34,7 +34,6 @@ const NationalityDetails = () => {
                   <Select
                     placeholder="Выбери из списка"
                     variant="thin"
-                    valueKey="label"
                     hasError={formState.errors?.citizenship}
                     options={[
                       { "value": "N", "label": "Лицо без гражданства" },

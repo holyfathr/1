@@ -27,8 +27,8 @@
     "cost": "Cost",
     "extended": "Extended",
     "extendedOptions": {
-      "providingVisa": "Military department",
-      "migrationSupport": "Scholarships and discounts",
+      "hasMilitaryDepartment": "Military department",
+      "hasScholarshipsAndDiscounts": "Scholarships and discounts",
       "isDormitoryAvailabel": "Dormitory"
     },
     "ordering": "Ordering",

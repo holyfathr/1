@@ -1,4 +1,5 @@
 import ActionButton from "components/ui/ActionButton"
+import FullWidthScrollLine from "components/ui/FullWidthScrollLine"
 
 import { useTranslation } from "next-i18next"
 
@@ -8,7 +9,7 @@ const DesktopSearchOptions = ({ options, onDelete, onDeleteAll }) => {
   const { t: tC } = useTranslation("common")
 
   return (
-    <div className={styles.options}>
+    <FullWidthScrollLine className={styles.options}>
       {options.length > 0 && (
         <ActionButton icon="trash" variant="danger" onClick={onDeleteAll}>
           {tC("resetAll")}
@@ -25,7 +26,7 @@ const DesktopSearchOptions = ({ options, onDelete, onDeleteAll }) => {
           {option.label}
         </ActionButton>
       ))}
-    </div>
+    </FullWidthScrollLine>
   )
 }
 

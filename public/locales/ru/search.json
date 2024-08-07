@@ -27,7 +27,7 @@
     "cost": "Стоимость обучения",
     "extended": "Дополнительно",
     "extendedOptions": {
-      "migrationSupport": "Миграционное сопровождение",
+      "hasMilitaryDepartment": "Есть военная кафедра",
       "hasScholarshipsAndDiscounts": "Есть стипендии и скидки",
       "isDormitoryAvailabel": "Есть общежитие"
     },
