@@ -2,19 +2,60 @@ import Image from "next/image"
 import Subsection from "../Subsection"
 import Button from "../Button"
 import { useForm } from "react-hook-form"
-import merge from "lodash/merge"
 import { zodResolver } from "@hookform/resolvers/zod"
 import schema from "validation/account-form"
+import errorHandler from "helpers/error-handler"
+import { useMutation, useQueryClient } from "react-query"
+import toast from "react-hot-toast"
 
 import styles from "./wrong-modal.module.scss"
 import Input from "components/ui/Input"
 import Label from "components/ui/Label"
+import { putUniversityComment, putApplicationFac } from "api/account"
 
-const WrongModal = ({ application, onDelete, closeModal }) => {
-  const { register, formState } = useForm({
-    defaultValues: merge({ visible: true }),
+const WrongModal = ({ application, closeModal }) => {
+  const { register, handleSubmit, formState } = useForm({
+    defaultValues: {
+      university_comment: "",
+    },
     resolver: zodResolver(schema),
   })
+
+  const queryClient = useQueryClient()
+  const putUniversityMutation = useMutation(putUniversityComment, {
+    onError: errorHandler,
+  })
+  const putMutation = useMutation(putApplicationFac, {
+    onError: errorHandler,
+  })
+
+  const updateApplicationsQueries = async () => {
+    await queryClient.invalidateQueries({
+      predicate: ({ queryKey }) => queryKey.includes("application"),
+    })
+  }
+
+  const onComment = async (formData) => {
+    const alert = toast.loading("Передача комментария...")
+
+    try {
+      await putUniversityMutation.mutateAsync({
+        id: application.id,
+        university_comment: formData.university_comment,
+        educational_program_id: application.educational_program_obj.id,
+      })
+      await putMutation.mutateAsync({
+        id: application.id,
+        university_status: "I",
+      })
+      await updateApplicationsQueries()
+
+      toast.success("Комментарий передан", { id: alert })
+    } catch {
+      toast.dismiss(alert)
+    }
+  }
+
   return (
     <div className={styles.wrapper}>
       <Image
@@ -30,12 +71,16 @@ const WrongModal = ({ application, onDelete, closeModal }) => {
           ошибки или недостающей информации. Мы получим ваш комментарий и свяжемся с
           абитуриентом для устранения недостатков.
         </span>
-        <Label title="Опишите проблему" hasError={formState.errors.title}>
-          <Input {...register("title")} />
+        <Label title="Опишите проблему" hasError={formState.errors.university_comment}>
+          <Input {...register("university_comment")} />
         </Label>
       </Subsection>
       <div className={styles.buttons}>
-        <Controls styles={styles} closeModal={closeModal} onDelete={onDelete} />
+        <Controls
+          styles={styles}
+          closeModal={closeModal}
+          onDelete={handleSubmit(onComment)} 
+        />
       </div>
     </div>
   )
@@ -43,15 +88,15 @@ const WrongModal = ({ application, onDelete, closeModal }) => {
 
 const Controls = ({ styles, closeModal, onDelete }) => (
   <>
-    <Button tton variant="ghost" onClick={closeModal}>
+    <Button variant="ghost" onClick={closeModal}>
       Отменить
     </Button>
 
     <Button
       className={styles.rejectButton}
-      onClick={() => {
-        onDelete()
-        closeModal
+      onClick={async () => {
+        await onDelete()
+        closeModal()
       }}
     >
       Отправить комментарий

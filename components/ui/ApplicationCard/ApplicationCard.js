@@ -174,6 +174,9 @@ const StatusesFromFac = ({ application }) => {
       {application.university_status === "A" && application.entrant_status === "P" && (
         <StatusCard completed>{statusMessage}</StatusCard>
       )}
+      {application.university_status === "R" && application.entrant_status === "P" && (
+        <StatusCard>{statusMessage}</StatusCard>
+      )}
     </>
   )
 }

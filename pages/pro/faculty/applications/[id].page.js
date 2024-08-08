@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useRouter } from "next/router"
-import { FormProvider, useForm,  } from "react-hook-form"
+import { FormProvider, useForm } from "react-hook-form"
 import cloneDeep from "lodash/cloneDeep"
 import { useMutation, useQueryClient } from "react-query"
 import toast from "react-hot-toast"
@@ -24,9 +24,8 @@ import StatusCard from "components/ui/StatusCard"
 import AcceptModal from "components/ui/AcceptModal/AcceptModal"
 import AcceptFacModal from "components/ui/AcceptFacModal/AcceptFacModal"
 
-
 import { formatDateString } from "helpers/language"
-import { putApplicationFac } from "api/account"
+import { putApplicationFac, putUniversityComment } from "api/account"
 
 import withProtection from "hocs/with-protection"
 
@@ -37,10 +36,22 @@ const ApplicationPage = ({ id }) => {
   const router = useRouter()
   const methods = useForm()
   const queryClient = useQueryClient()
-  const { Modal, open, close } = useModal()
+  const {
+    Modal: CorrectModal,
+    open: openCorModal,
+    close: closeCorModal,
+  } = useModal()
+  const {
+    Modal: InCorrentModal,
+    open: openInCorModal,
+    close: closeInCorModal,
+  } = useModal()
 
   const { data: application } = useDefinedQuery(keys.account.faculty.application(id))
   const putMutation = useMutation(putApplicationFac, {
+    onError: errorHandler,
+  })
+  const putUniversityMutation = useMutation(putUniversityComment, {
     onError: errorHandler,
   })
 
@@ -49,6 +60,22 @@ const ApplicationPage = ({ id }) => {
       predicate: ({ queryKey }) => queryKey.includes("application"),
     })
   }
+
+  // const onComment = async () => {
+  //   const alert = toast.loading("Передача комментария...")
+
+  //   try {
+  //     await putUniversityMutation.mutateAsync({
+  //       id,
+  //       university_status: "R",
+  //     })
+  //     await updateApplicationsQueries()
+
+  //     toast.success("Комментарий передан", { id: alert })
+  //   } catch {
+  //     toast.dismiss(alert)
+  //   }
+  // }
 
   const onReject = async () => {
     const alert = toast.loading("Передача согласия...")
@@ -128,20 +155,24 @@ const ApplicationPage = ({ id }) => {
         title={`${application.educational_program_obj.title}: Заявка №${application.id}`}
         contentClassName={styles.page}
       >
-        <Modal>
-          <WrongModal application={application} closeModal={close} />
-        </Modal>
-        <Modal>
-          <AcceptFacModal application={application} onAccept={onAccept} closeModal={close} />
-        </Modal>
-
+        <InCorrentModal>
+          <WrongModal application={application} closeModal={closeInCorModal} />
+        </InCorrentModal>
+        <CorrectModal>
+          <AcceptFacModal
+            application={application}
+            onAccept={onAccept}
+            closeModal={closeCorModal}
+          />
+        </CorrectModal>
 
         <StatusesCard.Header>
           <Header
             application={application}
             onReject={onReject}
             onAccept={onAccept}
-            onOpen={open}
+            onOpenCor={openCorModal}
+            onOpenInCor = {openInCorModal}
             onPendingVisa={onPendingVisa}
           />
         </StatusesCard.Header>
@@ -161,7 +192,6 @@ const ApplicationPage = ({ id }) => {
         </Button>
       </Page>
     </Layout>
-
   )
 }
 
@@ -208,13 +238,13 @@ const Statuses = ({ application }) => {
             }
             secondary={statusMessage === "Ожидает рассмотрения"}
           >
-            <Icon slug="green-dot" className={styles.dot}/>
+            <Icon slug="green-dot" className={styles.dot} />
             {statusMessage}
           </StatusCard>
         ))}
       {application.university_status === "D" && application.entrant_status === "P" && (
         <StatusCard secondary>
-          <Icon slug="wait-dot" className={styles.dot}/>
+          <Icon slug="wait-dot" className={styles.dot} />
           {statusMessages}
         </StatusCard>
       )}
@@ -248,54 +278,56 @@ const StatusesFromEntrant = ({ application }) => {
   )
 }
 
-const Header = ({ application, onReject, onAccept, onOpen, onPendingVisa }) => {
+const Header = ({ application, onReject, onAccept, onOpenCor, onOpenInCor, onPendingVisa }) => {
   let headerMessage
   let icon
   let buttons = null
 
   if (application.entrant_status === "W" && application.university_status === "A") {
     headerMessage = "Абитуриент отозвал заявку, далее работать с заявкой невозможно."
-    icon="incorrect-icon"
+    icon = "incorrect-icon"
   }
 
   if (application.entrant_status === "W" && application.university_status === "D") {
     headerMessage = "Абитуриент отозвал заявку, далее работать с заявкой невозможно."
-    icon="incorrect-icon"
+    icon = "incorrect-icon"
   }
 
   if (application.university_status === "V" && application.entrant_status === "A") {
     headerMessage =
       "Абитуриент подал согласие на зачисление. Если требуется, Вы можете отправить визовое приглашение на въезд в РФ в самой заявке."
-      icon="correct-icon"  
+    icon = "correct-icon"
   }
 
   if (application.university_status === "A" && application.entrant_status === "A") {
     headerMessage =
       "Абитуриент подал согласие на зачисление. Если требуется, Вы можете отправить визовое приглашение на въезд в РФ в самой заявке."
-      icon="correct-icon"
+    icon = "correct-icon"
   }
 
   if (application.university_status === "A" && application.entrant_status === "P") {
     headerMessage = "Вы одобрили заявку, ожидается решение от абитуриента."
-    icon="correct-icon"
+    icon = "correct-icon"
   }
 
   if (application.entrant_status === "P" && application.university_status === "R") {
     headerMessage = "Вы отклонили заявку, далее работать с заявкой невозможно."
-    icon="warning-icon"
+    icon = "warning-icon"
   }
 
   if (application.entrant_status === "P" && application.university_status === "D") {
     headerMessage = "Вам нужно приступить к рассмотрению заявки."
-    icon="wait-icon"
+    icon = "wait-icon"
     buttons = (
       <div className={styles.buttons}>
-        <Button variant="ghost" href={`/pro/falulty/table`}>Решить позже</Button>
+        <Button variant="ghost" href={`/pro/falulty/table`}>
+          Решить позже
+        </Button>
         <Button className={styles.rejectButton} onClick={onReject}>
           Отклонить
         </Button>
-        <Button onClick={onOpen}>Одобрить</Button>
-        <Button variant="ghost" onClick={onOpen}>
+        <Button onClick={onOpenCor}>Одобрить</Button>
+        <Button variant="ghost" onClick={onOpenInCor}>
           Что-то не так?
         </Button>
       </div>
@@ -333,11 +365,9 @@ const Header = ({ application, onReject, onAccept, onOpen, onPendingVisa }) => {
     <div className={styles.header}>
       <div className={styles.headerText}>
         <div>
-          <Icon slug={icon} className={styles.icon}/>
+          <Icon slug={icon} className={styles.icon} />
         </div>
-        <p>          
-          {headerMessage}
-        </p>
+        <p>{headerMessage}</p>
       </div>
       {application.university_status === "A" && application.entrant_status === "A" && (
         <VisaInvitationForm onNext={onPendingVisa} />

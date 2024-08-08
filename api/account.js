@@ -59,3 +59,15 @@ export const putApplicationFac = async ({ id, entrant_status, university_status 
     university_status,
   })
 }
+
+/**
+ * Retracts agreement from the given application.
+ *
+ * @param {object} application - Application to retract agreement from
+ */
+export const putUniversityComment = async ({ id, university_comment, educational_program_id }) => {
+  await instance.put(`/accounts/faculty/educationalprogram/${educational_program_id}/application-comment/`, {
+    id,
+    university_comment,
+  })
+}
