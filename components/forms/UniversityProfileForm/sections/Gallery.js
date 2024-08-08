@@ -2,7 +2,6 @@ import React from "react";
 import { useFormContext, useWatch, Controller } from "react-hook-form";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
 import { arrayMoveImmutable } from "array-move";
-
 import Subsection from "components/ui/Subsection";
 import FileUploadContainer from "components/containers/FileUploadContainer";
 import Icon from "components/ui/Icon";
@@ -10,7 +9,6 @@ import Label from "components/ui/Label";
 import Input from "components/ui/Input";
 import IconButton from "components/ui/IconButton";
 import ActionButton from "components/ui/ActionButton";
-
 import styles from "../university-profile-form.module.scss";
 
 const Gallery = () => {
@@ -18,7 +16,6 @@ const Gallery = () => {
   const photos = useWatch({ control, name: "gallery" }) || [];
 
   const onChange = (photos) => {
-    console.log("Updated photos:", photos);
     setValue("gallery", photos);
   };
 
@@ -52,7 +49,7 @@ const Gallery = () => {
       <Container onSortEnd={onSortEnd} >
         {photos.map((photo, index) => (
           <GalleryRow
-            key={photo.position}
+            key={`photo-${photo.position}`}
             index={index}
             photo={photo}
             removePhoto={() => removePhoto(index)}
@@ -92,7 +89,7 @@ const GalleryRow = SortableElement(({ photo, removePhoto }) => {
             name={`gallery[${photo.position - 1}].image_link`}
             render={({ field }) => (
               <FileUploadContainer
-                key={`image-${photo.position}`}  // Use a unique key
+                key={`image-${photo.position}`} // Ensure unique key for each FileUploadContainer
                 title="Добавить фотографию"
                 description="(jpeg, png)"
                 accept="image/jpeg,image/png"

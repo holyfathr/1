@@ -23,7 +23,7 @@ const FacultyProfileFormContainer = () => {
   const onSubmit = async ({ contacts, ...data }) => {
     const alert = toast.loading("Сохранение профиля...")
 
-    console.log(data)
+    console.log('ЧЗХ')
   
     try {
       await editMutation.mutateAsync(data)

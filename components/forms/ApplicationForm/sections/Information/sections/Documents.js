@@ -1,6 +1,5 @@
 import { Controller, useFormContext } from "react-hook-form";
 import DateInput from "components/ui/DateInput";
-import Input from "components/ui/Input";
 import Label from "components/ui/Label";
 import Subsection from "components/ui/Subsection";
 import NumberInput from "components/ui/NumberInput";
@@ -166,21 +165,19 @@ const Documents = ({ overview }) => {
           >
             <Controller
               control={control}
-              name="education_level	"
+              name="entrant.education_level"
               render={({ field }) => (
                 <Select
                   placeholder="Выбери опцию"
                   variant="thin"
-                  valueKey="label"
-                  hasError={formState.errors?.education_level}
+                  hasError={formState.errors.entrant?.education_level}
                   readOnly={overview}
                   options={[
-                    { "value": "Среднее специальное образование", "label": "Среднее специальное образование" },
-                    { "value": "Высшее образование", "label": "Высшее образование" },
-                    { "value": "Другое", "label": "Другое" },
+                    { "value": "M", "label": "Среднее специальное образование" },
+                    { "value": "H", "label": "Высшее образование" },
+                    { "value": "O", "label": "Другое" },
                   ]}
                   {...field}
-                  ref={register(field.name).ref}
                 />
               )}
             />

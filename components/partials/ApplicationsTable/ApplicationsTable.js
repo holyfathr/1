@@ -1,16 +1,10 @@
 import { useRouter } from "next/router"
-import flatten from "lodash/flatten"
-import uniqBy from "lodash/uniqBy"
 
 import Table from "components/proxies/Table"
-import FullWidthScrollLine from "components/ui/FullWidthScrollLine"
 
-import { formatName } from "helpers/language"
-import { getTrainingFormTitle } from "helpers/enums"
-import Subsection from "components/ui/Subsection"
-import Select from "components/ui/Select"
+import { formatName, formatDateString } from "helpers/language"
 
-const ApplicationsTable = ({ program, applications, ...props }) => {
+const ApplicationsTable = ({ program, applications }) => {
   const router = useRouter()
 
   const onRowClick = (application) => {
@@ -18,7 +12,11 @@ const ApplicationsTable = ({ program, applications, ...props }) => {
   }
 
   const columns=[
-    { title: "№", dataIndex: "id", key: "id", width: 56 },
+    { title: "№",
+      dataIndex: "number",
+      key: "number",
+      width: 56
+    },
     {
       title: "ФИО",
       dataIndex: "name",
@@ -30,6 +28,7 @@ const ApplicationsTable = ({ program, applications, ...props }) => {
       title: "Дата заявки",
       dataIndex:"date",
       key:"date",
+      render: (_,row) => formatDateString(row.date),
       width: 94,
     },
     {

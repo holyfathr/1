@@ -1,36 +1,37 @@
 import { useEffect } from "react"
 import { useRouter } from "next/router"
-import { Controller, FormProvider, useForm, useFormContext } from "react-hook-form"
+import { FormProvider, useForm,  } from "react-hook-form"
 import cloneDeep from "lodash/cloneDeep"
 import { useMutation, useQueryClient } from "react-query"
 import toast from "react-hot-toast"
 import useModal from "hooks/use-modal"
+import useDefinedQuery, { keys } from "hooks/use-defined-query"
+import errorHandler from "helpers/error-handler"
 
 import Layout from "components/partials/Layout"
 import Page from "components/partials/Page"
 import Button from "components/ui/Button"
-import Personal from "components/forms/ApplicationForm/sections/Information/sections/Personal"
-import NationalityDetails from "components/forms/ApplicationForm/sections/Information/sections/NationalityDetails"
-import Contacts from "components/forms/ApplicationForm/sections/Information/sections/Contacts"
-import Documents from "components/forms/ApplicationForm/sections/Information/sections/Documents"
-import Additional from "components/forms/ApplicationForm/sections/Information/sections/Additional"
+import Personal from "components/containers/ApplicationReviewSections/Personal"
+import NationalityDetails from "components/containers/ApplicationReviewSections/NationalityDetails"
+import Contacts from "components/containers/ApplicationReviewSections/Contacts"
+import Documents from "components/containers/ApplicationReviewSections/Documents"
+import Additional from "components/containers/ApplicationReviewSections/Additional"
 import Priority from "components/containers/ApplicationReviewSections/Priority"
+import WrongModal from "components/ui/WrongModal/WrongModal"
+import VisaInvitationForm from "components/forms/VisaInvitationForm/VisaInvitationForm"
+import StatusesCard from "components/ui/StatusesCard"
+import StatusCard from "components/ui/StatusCard"
+import AcceptModal from "components/ui/AcceptModal/AcceptModal"
+import AcceptFacModal from "components/ui/AcceptFacModal/AcceptFacModal"
 
-import useDefinedQuery, { keys } from "hooks/use-defined-query"
-import errorHandler from "helpers/error-handler"
+
+import { formatDateString } from "helpers/language"
+import { putApplicationFac } from "api/account"
 
 import withProtection from "hocs/with-protection"
 
 import styles from "./applications.module.scss"
-import StatusesCard from "components/ui/StatusesCard"
-import StatusCard from "components/ui/StatusCard"
-import { putApplicationFac } from "api/account"
-import FileUploadContainer from "components/containers/FileUploadContainer"
-import Subsection from "components/ui/Subsection"
-import WrongModal from "components/ui/WrongModal/WrongModal"
-import VisaInvitationForm from "components/forms/VisaInvitationForm/VisaInvitationForm"
-import AcceptModal from "components/ui/AcceptModal/AcceptModal"
-import AcceptFacModal from "components/ui/AcceptFacModal/AcceptFacModal"
+import Icon from "components/ui/Icon"
 
 const ApplicationPage = ({ id }) => {
   const router = useRouter()
@@ -115,18 +116,26 @@ const ApplicationPage = ({ id }) => {
   if (!application) return "Загрузка..."
 
   return (
-    <>
-      <Modal>
-        <WrongModal application={application} closeModal={close} />
-      </Modal>
-      <Modal>
-        <AcceptFacModal application={application} onAccept={onAccept} closeModal={close} />
-      </Modal>
-      <Layout title={`Заявка №${application.id}`}>
-        <StatusesCard.Statuses>
-          <Statuses application={application} />
-          <StatusesFromEntrant application={application} />
-        </StatusesCard.Statuses>
+    <Layout title={`Заявка №${application.id}`}>
+      <StatusesCard.Statuses>
+        <Statuses application={application} />
+        <StatusesFromEntrant application={application} />
+        <div className={styles.applicationDate}>
+          Дата подачи: {formatDateString(application.date)}
+        </div>
+      </StatusesCard.Statuses>
+      <Page
+        title={`${application.educational_program_obj.title}: Заявка №${application.id}`}
+        contentClassName={styles.page}
+      >
+        <Modal>
+          <WrongModal application={application} closeModal={close} />
+        </Modal>
+        <Modal>
+          <AcceptFacModal application={application} onAccept={onAccept} closeModal={close} />
+        </Modal>
+
+
         <StatusesCard.Header>
           <Header
             application={application}
@@ -136,27 +145,23 @@ const ApplicationPage = ({ id }) => {
             onPendingVisa={onPendingVisa}
           />
         </StatusesCard.Header>
+        <FormProvider {...methods}>
+          <div className={styles.application}>
+            <Personal overview application={application} />
+            <Contacts application={application} />
+            <NationalityDetails application={application} />
+            <Documents overview application={application} />
+            <Additional overview application={application} />
+            <Priority application={application} />
+          </div>
+        </FormProvider>
 
-        <Page
-          title={`${application.educational_program_obj.title}: Заявка №${application.id}`}
-        >
-          <FormProvider {...methods}>
-            <div className={styles.application}>
-              <Personal overview application={application} />
-              <Contacts application={application} />
-              <NationalityDetails application={application} />
-              <Documents overview application={application} />
-              <Additional overview application={application} />
-              <Priority application={application} />
-            </div>
-          </FormProvider>
+        <Button variant="ghost" onClick={router.back} className={styles.back}>
+          Назад
+        </Button>
+      </Page>
+    </Layout>
 
-          <Button variant="ghost" onClick={router.back} className={styles.back}>
-            Назад
-          </Button>
-        </Page>
-      </Layout>
-    </>
   )
 }
 
@@ -203,11 +208,15 @@ const Statuses = ({ application }) => {
             }
             secondary={statusMessage === "Ожидает рассмотрения"}
           >
+            <Icon slug="green-dot" className={styles.dot}/>
             {statusMessage}
           </StatusCard>
         ))}
       {application.university_status === "D" && application.entrant_status === "P" && (
-        <StatusCard secondary>{statusMessages}</StatusCard>
+        <StatusCard secondary>
+          <Icon slug="wait-dot" className={styles.dot}/>
+          {statusMessages}
+        </StatusCard>
       )}
     </>
   )
@@ -241,42 +250,50 @@ const StatusesFromEntrant = ({ application }) => {
 
 const Header = ({ application, onReject, onAccept, onOpen, onPendingVisa }) => {
   let headerMessage
+  let icon
   let buttons = null
 
   if (application.entrant_status === "W" && application.university_status === "A") {
     headerMessage = "Абитуриент отозвал заявку, далее работать с заявкой невозможно."
+    icon="incorrect-icon"
   }
 
   if (application.entrant_status === "W" && application.university_status === "D") {
     headerMessage = "Абитуриент отозвал заявку, далее работать с заявкой невозможно."
+    icon="incorrect-icon"
   }
 
   if (application.university_status === "V" && application.entrant_status === "A") {
     headerMessage =
       "Абитуриент подал согласие на зачисление. Если требуется, Вы можете отправить визовое приглашение на въезд в РФ в самой заявке."
+      icon="correct-icon"  
   }
 
   if (application.university_status === "A" && application.entrant_status === "A") {
     headerMessage =
       "Абитуриент подал согласие на зачисление. Если требуется, Вы можете отправить визовое приглашение на въезд в РФ в самой заявке."
+      icon="correct-icon"
   }
 
   if (application.university_status === "A" && application.entrant_status === "P") {
     headerMessage = "Вы одобрили заявку, ожидается решение от абитуриента."
+    icon="correct-icon"
   }
 
   if (application.entrant_status === "P" && application.university_status === "R") {
     headerMessage = "Вы отклонили заявку, далее работать с заявкой невозможно."
+    icon="warning-icon"
   }
 
   if (application.entrant_status === "P" && application.university_status === "D") {
     headerMessage = "Вам нужно приступить к рассмотрению заявки."
+    icon="wait-icon"
     buttons = (
       <div className={styles.buttons}>
-        <Button variant="ghost">Решить позже</Button>
-        <button className={styles.rejBtn} onClick={onReject}>
+        <Button variant="ghost" href={`/pro/falulty/table`}>Решить позже</Button>
+        <Button className={styles.rejectButton} onClick={onReject}>
           Отклонить
-        </button>
+        </Button>
         <Button onClick={onOpen}>Одобрить</Button>
         <Button variant="ghost" onClick={onOpen}>
           Что-то не так?
@@ -315,7 +332,12 @@ const Header = ({ application, onReject, onAccept, onOpen, onPendingVisa }) => {
   return (
     <div className={styles.header}>
       <div className={styles.headerText}>
-        <p>{headerMessage}</p>
+        <div>
+          <Icon slug={icon} className={styles.icon}/>
+        </div>
+        <p>          
+          {headerMessage}
+        </p>
       </div>
       {application.university_status === "A" && application.entrant_status === "A" && (
         <VisaInvitationForm onNext={onPendingVisa} />

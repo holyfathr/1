@@ -134,8 +134,8 @@ export const getSearchFilters = async () => {
       i18nLabel: "filters.extended",
       type: "select",
       options: [
-        { value: "has_military_department", i18nLabel: "filters.extendedOptions.hasMilitaryDepartment" },
-        { value: "has_scholarships_and_discounts", i18nLabel: "filters.extendedOptions.hasScholarshipsAndDiscounts" },
+        // { value: "has_military_department", i18nLabel: "filters.extendedOptions.migrationSupport" },
+        // { value: "has_scholarships_and_discounts", i18nLabel: "filters.extendedOptions.hasScholarshipsAndDiscounts" },
         { value: "is_dormitory_available", i18nLabel: "filters.extendedOptions.isDormitoryAvailabel" },
       ],
     },

@@ -25,10 +25,6 @@ const WrongModal = ({ application, onDelete, closeModal }) => {
         priority
       />
       <Subsection title="Что-то не так с заявкой?" className={styles.message}>
-        {/* <div className={styles.education}>
-          <p><b>Название вуза: {" "}</b>{application.university_obj.title}</p>
-          <p><b>Название программы: {" "}</b>{application.educational_program_obj.title}</p>
-        </div> */}
         <span>
           Если заявка содержит ошибку или неполные данные, введите подробное описание
           ошибки или недостающей информации. Мы получим ваш комментарий и свяжемся с

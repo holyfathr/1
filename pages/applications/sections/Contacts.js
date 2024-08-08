@@ -1,10 +1,21 @@
-import ContactsGrid from "components/partials/ContactsGrid"
-import Subsection from "components/ui/Subsection"
+import Label from "components/ui/Label";
+import Subsection from "components/ui/Subsection";
 
-const Contacts = ({ application }) => (
-  <Subsection title="Контакты вуза">
-    <ContactsGrid contacts={application.university_contact_obj} />
-  </Subsection>
-)
+import styles from "../applications.module.scss";
 
-export default Contacts
+const Contacts = ({ application }) => {
+
+  return (
+    <Subsection title="Контактные данные" contentClassName={styles.rowInputs}>
+      <Label title="E-mail">
+        {application.email}
+      </Label>
+
+      <Label title="Телефон">
+        {`+ ${application.entrant_obj.phone_number}`}
+      </Label>
+    </Subsection>
+  );
+}
+
+export default Contacts;

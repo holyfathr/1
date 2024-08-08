@@ -3,7 +3,7 @@ import Label from "components/ui/Label";
 import Subsection from "components/ui/Subsection";
 import FileUploadContainer from "components/containers/FileUploadContainer";
 
-import { getCitizenship } from "helpers/enums";
+import { getCitizenship, getEducationLevel } from "helpers/enums";
 import { formatDateYear, formatDate } from "helpers/language";
 
 import styles from "./application-review.module.scss";
@@ -14,22 +14,14 @@ const Documents = ({ overview, application }) => {
   return (
     <Subsection title="Документы" contentClassName={styles.program}>
         <div className={styles.rowInputs}>
-          <Controller
-            control={control}
-            name="entrant.doc_image_link"
-            render={({ field }) => (
-              <FileUploadContainer
-                  title="Копия и перевод документа, удостоверяющего личность(паспорт)"
-                  description="(jpeg, png, PDF)"
-                  accept="image/jpeg,image/png,application/pdf"
-                  variant="tiny"
-                  className={styles.upload}
-                  readOnly={overview}
-                  hasError={formState.errors?.doc_image_link}
-                  {...field}
-              />
-            )}
+          <FileUploadContainer
+              title="Копия и перевод документа, удостоверяющего личность(паспорт)"
+              variant="tiny"
+              value={application.entrant.doc_image_link}
+              className={styles.upload}
+              readOnly={overview}
           />
+
 
           <div className={styles.documents}>
             <Label title="Тип документа*">
@@ -75,7 +67,7 @@ const Documents = ({ overview, application }) => {
             )}
           />
           <Label title="Уровень имеющегося образования*">
-            {application.entrant.education_level}
+            {getEducationLevel(application.entrant.education_level)}
           </Label>
           <Label title="Год выдачи*">
             {formatDateYear(application.entrant.diploma_date_issued)}

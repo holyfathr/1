@@ -1,18 +1,12 @@
 import { useMutation, useQueryClient } from "react-query"
 import toast from "react-hot-toast"
 import { useRouter } from "next/router"
+import { FormProvider, useForm } from "react-hook-form"
+import useModal from "hooks/use-modal"
 
 import Layout from "components/partials/Layout"
 import Page from "components/partials/Page"
 import Button from "components/ui/Button"
-import Documents from "./sections/Documents"
-import Features from "./sections/Features"
-import University from "./sections/University"
-import Faculty from "./sections/Faculty"
-import Dvi from "./sections/Dvi"
-import Contacts from "./sections/Contacts"
-import DviResults from "./sections/DviResults"
-import useModal from "hooks/use-modal"
 
 import errorHandler from "helpers/error-handler"
 
@@ -31,12 +25,20 @@ import { putApplication } from "api/account"
 import styles from "./applications.module.scss"
 import StatusCard from "components/ui/StatusCard"
 import StatusesCard from "components/ui/StatusesCard"
+import Personal from "./sections/Personal"
+import Contacts from "./sections/Contacts"
+import NationalityDetails from "./sections/NationalityDetails"
+import Documents from "./sections/Documents"
+import Additional from "./sections/Additional"
+import Priority from "components/containers/ApplicationReviewSections/Priority"
 import RejectModal from "components/ui/RejectModal"
 import AcceptModal from "components/ui/AcceptModal/AcceptModal"
 
 const ApplicationPage = ({ id }) => {
   const queryClient = useQueryClient()
   const router = useRouter()
+  const methods = useForm()
+
   const { Modal, open, close } = useModal()
 
   const { data: application } = useDefinedQuery(keys.account.entrant.application(id))
@@ -114,69 +116,54 @@ const ApplicationPage = ({ id }) => {
     }
   }
 
-  // const onDelete = async () => {
-  //   const alert = toast.loading("Отзыв заявки...")
-
-  //   try {
-  //     await deleteMutation.mutateAsync({ id })
-  //     await updateApplicationsQueries()
-
-  //     await router.push({ pathname: "/applications/", query: { after_delete: true } })
-  //   } catch {
-  //     toast.dismiss(alert)
-  //   }
-  // }
 
   console.log(application)
 
   if (!application) return null
 
   return (
-    <>
-      <Layout title={application.educational_program_title}>
-        <Modal>
-          <RejectModal application={application} onReject={onReject} closeModal={close} />
-        </Modal>
-        <Modal>
-          <AcceptModal application={application} onAccept={onAccept} closeModal={close} />
-        </Modal>
-        <StatusesCard.Statuses>
-          <Statuses application={application} />
-          <StatusesFromFac application={application} />
-        </StatusesCard.Statuses>
-        <StatusesCard.Header>
-          <Header
-            application={application}
-            onAccept={onAccept}
-            onReject={onReject}
-            onOpen={open}
-          />
-        </StatusesCard.Header>
-        <Page
-          title={application.educational_program_title}
-          controls={
+    <Layout title={application.educational_program_title}>
+      <Modal>
+        <RejectModal application={application} onReject={onReject} closeModal={close} />
+      </Modal>
+      <Modal>
+        <AcceptModal application={application} onAccept={onAccept} closeModal={close} />
+      </Modal>
+      <Page
+        title={application.educational_program_title}
+        contentClassName={styles.subsections}
+        controls={
             <Buttons
               application={application}
               onRetractAgreement={onRetractAgreement}
-              // onDelete={onDelete}
             />
-          }
-          contentClassName={styles.subsections}
-        >
-          <Features application={application} />
-          <University application={application} />
-          <Faculty application={application} />
-          <Dvi application={application} />
-          <DviResults application={application} />
-          <Documents />
-          <Contacts application={application} />
+        }
+      >
+        <div className={styles.statusBar}>
+          <StatusesCard.Statuses>
+            <Statuses application={application} />
+            <StatusesFromFac application={application} />
+          </StatusesCard.Statuses>
+          <StatusesCard.Header>
+            <Header application={application} onAccept={onAccept} onReject={onReject} onOpen={open} />
+          </StatusesCard.Header>
+        </div>
+        <FormProvider {...methods}>
+          <div className={styles.application}>
+            <Personal overview application={application} />
+            <Contacts application={application} />
+            <NationalityDetails application={application} />
+            <Documents overview application={application} />
+            <Additional overview application={application} />
+            <Priority application={application} />
+          </div>
+        </FormProvider>
 
-          {!application.has_agreement && (
-            <Button onClick={onPassAgreement}>Передать согласие</Button>
-          )}
-        </Page>
-      </Layout>
-    </>
+        {/* {!application.has_agreement && (
+          <Button onClick={onPassAgreement}>Передать согласие</Button>
+        )} */}
+      </Page>
+    </Layout>
   )
 }
 
@@ -309,6 +296,7 @@ const StatusesFromFac = ({ application }) => {
       {application.university_status === "A" && application.entrant_status === "P" && (
         <StatusCard completed>{statusMessage}</StatusCard>
       )}
+
     </>
   )
 }

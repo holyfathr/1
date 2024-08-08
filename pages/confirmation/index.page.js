@@ -44,7 +44,7 @@ const ConfirmationPage = () => {
       <Page>
         <IllustrationMessage
           illustration="plane"
-          title="Чтобы воспользоваться Альматором – подтверди свою почту"
+          title="Подтверди адрес электронный почты, чтобы завершить регистрацию!"
         >
           Мы отправили ссылку на твою почту, она будет действительна 24 часа
         </IllustrationMessage>

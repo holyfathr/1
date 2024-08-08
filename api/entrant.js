@@ -51,9 +51,6 @@ export const getEntrantAccount = async () => {
 
   parseEntrantAccount(account)
 
-  // TODO: remove
-  account.citizenship = "Российская Федерация"
-
   return account
 }
 

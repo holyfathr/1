@@ -1,7 +1,9 @@
 import Label from "components/ui/Label"
 import Subsection from "components/ui/Subsection"
 
-import styles from "./application-review.module.scss";
+import { getCitizenship } from "helpers/enums";
+
+import styles from "../applications.module.scss";
 
 const NationalityDetails = ({ application }) => {
 
@@ -9,7 +11,7 @@ const NationalityDetails = ({ application }) => {
     <Subsection title="Данные о гражданстве">
       <span className={styles.rowInputs}>
         <Label title="Гражданство">
-          {application.entrant.citizenship}
+          {application.entrant_obj.citizenship}
         </Label>
           
         <Label title="Где ты планируешь податься на визу?">

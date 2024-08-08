@@ -23,13 +23,7 @@ const GalleryList = ({ program }) => {
 
   return(
       <Container onSortEnd={onSortEnd}>
-        <GalleryRow
-          // key={index + 1}
-          // photo={galleryPhoto}
-          // index={index}
-          // sortIndex={index}
-          // renderCard={renderCard}
-        />
+        <GalleryRow/>
       </Container>
   )
 }

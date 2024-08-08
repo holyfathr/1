@@ -23,6 +23,13 @@ export const formatDate = (date, formatString = "d MMMM yyyy") => {
   return isValid(date) ? format(date, formatString, { locale: ru }) : undefined
 }
 
+export const formatDateString = (date, formatString = "dd.MM.yyyy") => {
+  if (!isValid(date)) date = parseISO(date)
+
+  return isValid(date) ? format(date, formatString, { locale: ru }) : undefined
+}
+
+
 export const formatDateYear = (date, formatString = " yyyy ") => {
   if (!isValid(date)) date = parseISO(date)
 

@@ -2,7 +2,6 @@ import Page from "components/partials/Page"
 import Button from "components/ui/Button"
 import FavouriteProgramsGridContainer from "./sections/FavouriteProgramsGridContainer"
 import Link from "components/ui/Link"
-import RecommendedProgramsGridContainer from "./sections/RecommendationsContainer"
 
 import styles from "../../application-form.module.scss"
 
@@ -25,12 +24,6 @@ const Program = () => (
       </p>
     </span>
     <FavouriteProgramsGridContainer />
-    
-
-    {/* <Subsection title="2. Рекомендации для тебя">
-      <RecommendedProgramsGridContainer />
-    </Subsection> */}
-    
     
     <div className={styles.buttons}>
       <Button variant="ghost" disabled>

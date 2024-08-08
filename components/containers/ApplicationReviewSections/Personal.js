@@ -13,6 +13,8 @@ import styles from "./application-review.module.scss";
 const Personal = ({ overview, application }) => {
   const { control } = useFormContext()
 
+  console.log(application)
+
   return (
     <div className={styles.inputs}>
       <Controller

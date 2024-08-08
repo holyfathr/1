@@ -11,7 +11,6 @@ import Events from "./sections/Events"
 import QualifyTest from "./sections/QualifyTest"
 import Links from "./sections/Links"
 import Breadcrumbs from "./sections/Breadcrumbs"
-import HeaderLinks from "./sections/HeaderLinks"
 
 import useDefinedQuery, { keys } from "hooks/use-defined-query"
 

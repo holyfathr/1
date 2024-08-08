@@ -20,8 +20,6 @@ const FacultyProfileForm = ({ defaultValues, onSubmit, disabled, ...props }) => 
     resolver: zodResolver(schema),
   })
 
-  console.log(defaultValues)
-
   return (
     <FormProvider {...methods}>
       <form

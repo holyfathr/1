@@ -8,7 +8,7 @@ const StatusesCard = ({ children, className, ...props }) => {
   className = clsx(styles.wrapper, className)
 
   return (
-    <div className={className} {...props}>
+    <div className={styles.wrapper} {...props}>
       {children}
     </div>
   )

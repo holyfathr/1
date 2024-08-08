@@ -8,10 +8,19 @@
     margin: 0.5rem;
   }
 }
+.statusBar{
+  display: grid;
+  gap: 1.25rem;
+}
 
 .subsections {
   display: grid;
   gap: 3rem;
+}
+
+.application {
+  display: grid;
+  gap: 2rem;
 }
 
 .dviGrid {
@@ -44,6 +53,69 @@
   }
 
   @media screen and (max-width: 450px) {
+    grid-template-columns: auto;
+  }
+}
+
+.sideInputs {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(min-content, max-content);
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: auto;
+  }
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: 35% auto;
+  gap: 1.5rem;
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: auto;
+  }
+}
+
+.faceImage{
+  width: 22rem;
+  height: 29rem;
+}
+
+.rowInputs {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(min-content, max-content);
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: auto;
+  }
+}
+
+.upload {
+  min-height: 12rem;
+}
+
+.program{
+  display: grid;
+  gap: 1rem;
+}
+
+.docSection{
+  display: grid;
+  gap: 2.125rem;
+}
+
+.documents {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+  grid-template-rows: repeat(2, 1fr);
+  // grid-auto-rows: minmax(min-content, max-content);
+
+  @media screen and (max-width: 750px) {
     grid-template-columns: auto;
   }
 }
@@ -94,6 +166,7 @@
   justify-content: center;
   cursor: pointer;
 }
+
 .rejBtn:hover {
   background-color: darken($color: #eb5757, $amount: 10);
 }

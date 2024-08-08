@@ -1,18 +1,12 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-}
+@use "styles/inc/variables" as *;
 
 .statusesWrapper {
-  display: flex;
-  transform: translateY(50%);
-  justify-content: flex-end;
-}
-
-.headerWrapper {
-  display: flex;
-  transform: translateY(50%);
-  justify-content: flex-end;
+  width: $width-landing;
+  display: grid;
+  gap: 1.5rem;
+  margin: 0 auto;
+  grid-auto-rows: minmax(min-content, max-content);
+  padding-top: 4rem;
 }
 
 .header {
