@@ -29,6 +29,8 @@ import FileUploadContainer from "components/containers/FileUploadContainer"
 import Subsection from "components/ui/Subsection"
 import WrongModal from "components/ui/WrongModal/WrongModal"
 import VisaInvitationForm from "components/forms/VisaInvitationForm/VisaInvitationForm"
+import AcceptModal from "components/ui/AcceptModal/AcceptModal"
+import AcceptFacModal from "components/ui/AcceptFacModal/AcceptFacModal"
 
 const ApplicationPage = ({ id }) => {
   const router = useRouter()
@@ -116,6 +118,9 @@ const ApplicationPage = ({ id }) => {
     <>
       <Modal>
         <WrongModal application={application} closeModal={close} />
+      </Modal>
+      <Modal>
+        <AcceptFacModal application={application} onAccept={onAccept} closeModal={close} />
       </Modal>
       <Layout title={`Заявка №${application.id}`}>
         <StatusesCard.Statuses>
@@ -272,7 +277,7 @@ const Header = ({ application, onReject, onAccept, onOpen, onPendingVisa }) => {
         <button className={styles.rejBtn} onClick={onReject}>
           Отклонить
         </button>
-        <Button onClick={onAccept}>Одобрить</Button>
+        <Button onClick={onOpen}>Одобрить</Button>
         <Button variant="ghost" onClick={onOpen}>
           Что-то не так?
         </Button>

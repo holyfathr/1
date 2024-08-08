@@ -1,0 +1,54 @@
+@use "styles/inc/variables" as *;
+
+.wrapper {
+  width: 600px;
+  padding: 0 37px;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.message {
+  display: grid;
+  gap: 1.25rem;
+  text-align: center;
+
+  span {
+    // font-weight: 700;
+    p {
+      margin-bottom: 20px;
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.education {
+  margin-bottom: 1.25rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: -0.5rem {
+    top: 1rem;
+  }
+
+  > * {
+    margin: 0.5rem;
+    flex: 1;
+  }
+}
+
+.rejectButton {
+  width: 14rem;
+  height: 50px;
+  background-color: $accent-color;
+  font-weight: 500;
+
+  &:hover {
+    background-color: $dark-accent-color;
+  }
+}

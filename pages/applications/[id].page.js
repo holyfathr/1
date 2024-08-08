@@ -12,6 +12,7 @@ import Faculty from "./sections/Faculty"
 import Dvi from "./sections/Dvi"
 import Contacts from "./sections/Contacts"
 import DviResults from "./sections/DviResults"
+import useModal from "hooks/use-modal"
 
 import errorHandler from "helpers/error-handler"
 
@@ -30,10 +31,13 @@ import { putApplication } from "api/account"
 import styles from "./applications.module.scss"
 import StatusCard from "components/ui/StatusCard"
 import StatusesCard from "components/ui/StatusesCard"
+import RejectModal from "components/ui/RejectModal"
+import AcceptModal from "components/ui/AcceptModal/AcceptModal"
 
 const ApplicationPage = ({ id }) => {
   const queryClient = useQueryClient()
   const router = useRouter()
+  const { Modal, open, close } = useModal()
 
   const { data: application } = useDefinedQuery(keys.account.entrant.application(id))
 
@@ -110,60 +114,73 @@ const ApplicationPage = ({ id }) => {
     }
   }
 
-  const onDelete = async () => {
-    const alert = toast.loading("Отзыв заявки...")
+  // const onDelete = async () => {
+  //   const alert = toast.loading("Отзыв заявки...")
 
-    try {
-      await deleteMutation.mutateAsync({ id })
-      await updateApplicationsQueries()
+  //   try {
+  //     await deleteMutation.mutateAsync({ id })
+  //     await updateApplicationsQueries()
 
-      await router.push({ pathname: "/applications/", query: { after_delete: true } })
-    } catch {
-      toast.dismiss(alert)
-    }
-  }
+  //     await router.push({ pathname: "/applications/", query: { after_delete: true } })
+  //   } catch {
+  //     toast.dismiss(alert)
+  //   }
+  // }
 
   console.log(application)
 
   if (!application) return null
 
   return (
-    <Layout title={application.educational_program_title}>
-      <StatusesCard.Statuses>
-        <Statuses application={application} />
-        <StatusesFromFac application={application} />
-      </StatusesCard.Statuses>
-      <StatusesCard.Header>
-        <Header application={application} onAccept={onAccept} onReject={onReject} />
-      </StatusesCard.Header>
-      <Page
-        title={application.educational_program_title}
-        controls={
-          <Buttons
+    <>
+      <Layout title={application.educational_program_title}>
+        <Modal>
+          <RejectModal application={application} onReject={onReject} closeModal={close} />
+        </Modal>
+        <Modal>
+          <AcceptModal application={application} onAccept={onAccept} closeModal={close} />
+        </Modal>
+        <StatusesCard.Statuses>
+          <Statuses application={application} />
+          <StatusesFromFac application={application} />
+        </StatusesCard.Statuses>
+        <StatusesCard.Header>
+          <Header
             application={application}
-            onRetractAgreement={onRetractAgreement}
-            onDelete={onDelete}
+            onAccept={onAccept}
+            onReject={onReject}
+            onOpen={open}
           />
-        }
-        contentClassName={styles.subsections}
-      >
-        <Features application={application} />
-        <University application={application} />
-        <Faculty application={application} />
-        <Dvi application={application} />
-        <DviResults application={application} />
-        <Documents />
-        <Contacts application={application} />
+        </StatusesCard.Header>
+        <Page
+          title={application.educational_program_title}
+          controls={
+            <Buttons
+              application={application}
+              onRetractAgreement={onRetractAgreement}
+              // onDelete={onDelete}
+            />
+          }
+          contentClassName={styles.subsections}
+        >
+          <Features application={application} />
+          <University application={application} />
+          <Faculty application={application} />
+          <Dvi application={application} />
+          <DviResults application={application} />
+          <Documents />
+          <Contacts application={application} />
 
-        {!application.has_agreement && (
-          <Button onClick={onPassAgreement}>Передать согласие</Button>
-        )}
-      </Page>
-    </Layout>
+          {!application.has_agreement && (
+            <Button onClick={onPassAgreement}>Передать согласие</Button>
+          )}
+        </Page>
+      </Layout>
+    </>
   )
 }
 
-const Header = ({ application, onReject, onAccept }) => {
+const Header = ({ application, onReject, onAccept, onOpen }) => {
   let headerMessage
   let buttons = null
 
@@ -183,9 +200,9 @@ const Header = ({ application, onReject, onAccept }) => {
         >
           Подробнее о программе
         </Button>
-        <button className={styles.rejBtn} onClick={onReject}>
+        <Button className={styles.rejBtn} onClick={onOpen}>
           Отклонить
-        </button>
+        </Button>
       </div>
     )
   }
@@ -197,7 +214,7 @@ const Header = ({ application, onReject, onAccept }) => {
         <button className={styles.rejBtn} onClick={onReject}>
           Отозвать
         </button>
-        <Button onClick={onAccept}>Подать согласие</Button>
+        <Button onClick={onOpen}>Подать согласие</Button>
       </div>
     )
   }
@@ -247,9 +264,7 @@ const Statuses = ({ application }) => {
       {application.university_status === "A" && application.entrant_status === "P" && (
         <StatusCard secondary>{statusMessage}</StatusCard>
       )}
-      {application.entrant_status === "W" && (
-        <StatusCard>{statusMessage}</StatusCard>
-      )}
+      {application.entrant_status === "W" && <StatusCard>{statusMessage}</StatusCard>}
     </>
   )
 }
@@ -289,6 +304,9 @@ const StatusesFromFac = ({ application }) => {
         <StatusCard secondary>{statusMessage}</StatusCard>
       )}
       {application.university_status === "V" && application.entrant_status === "A" && (
+        <StatusCard completed>{statusMessage}</StatusCard>
+      )}
+      {application.university_status === "A" && application.entrant_status === "P" && (
         <StatusCard completed>{statusMessage}</StatusCard>
       )}
     </>
