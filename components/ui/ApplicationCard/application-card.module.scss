@@ -16,6 +16,11 @@
   font-size: 0.9rem;
 }
 
+.dot{
+  margin-right: 0.3rem;
+  @include mixins.box(0.75rem);
+}
+
 .title {
   @include mixins.transition(color);
 

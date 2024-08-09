@@ -12,13 +12,13 @@ import styles from "./wrong-modal.module.scss"
 import Input from "components/ui/Input"
 import Label from "components/ui/Label"
 import { putUniversityComment, putApplicationFac } from "api/account"
+import { useEffect } from "react"
 
 const WrongModal = ({ application, closeModal }) => {
   const { register, handleSubmit, formState } = useForm({
     defaultValues: {
       university_comment: "",
     },
-    resolver: zodResolver(schema),
   })
 
   const queryClient = useQueryClient()
@@ -37,7 +37,6 @@ const WrongModal = ({ application, closeModal }) => {
 
   const onComment = async (formData) => {
     const alert = toast.loading("Передача комментария...")
-
     try {
       await putUniversityMutation.mutateAsync({
         id: application.id,
@@ -71,7 +70,7 @@ const WrongModal = ({ application, closeModal }) => {
           ошибки или недостающей информации. Мы получим ваш комментарий и свяжемся с
           абитуриентом для устранения недостатков.
         </span>
-        <Label title="Опишите проблему" hasError={formState.errors.university_comment}>
+        <Label title="Опишите проблему">
           <Input {...register("university_comment")} />
         </Label>
       </Subsection>
@@ -79,7 +78,7 @@ const WrongModal = ({ application, closeModal }) => {
         <Controls
           styles={styles}
           closeModal={closeModal}
-          onDelete={handleSubmit(onComment)} 
+          onDelete={handleSubmit(onComment)}
         />
       </div>
     </div>
@@ -96,7 +95,7 @@ const Controls = ({ styles, closeModal, onDelete }) => (
       className={styles.rejectButton}
       onClick={async () => {
         await onDelete()
-        closeModal()
+        // closeModal()
       }}
     >
       Отправить комментарий

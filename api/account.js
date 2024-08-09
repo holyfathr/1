@@ -1,4 +1,5 @@
 import { instance } from "api/setup"
+import { uploadFile, uploadObjectFiles } from "./files"
 
 /**
  * Returns current user account.
@@ -65,9 +66,30 @@ export const putApplicationFac = async ({ id, entrant_status, university_status 
  *
  * @param {object} application - Application to retract agreement from
  */
-export const putUniversityComment = async ({ id, university_comment, educational_program_id }) => {
-  await instance.put(`/accounts/faculty/educationalprogram/${educational_program_id}/application-comment/`, {
+export const putUniversityComment = async ({
+  id,
+  university_comment,
+  educational_program_id,
+}) => {
+  await instance.put(
+    `/accounts/faculty/educationalprogram/${educational_program_id}/application-comment/`,
+    {
+      id,
+      university_comment,
+    }
+  )
+}
+
+/**
+ * Retracts agreement from the given application.
+ *
+ * @param {object} application - Application to retract agreement from
+ */
+export const putVisaInvite = async ({ id, visa_image_link, visa_comment }) => {
+  await Promise.all([await uploadFile(visa_image_link)])
+  await instance.put("/accounts/faculty/application-visa-change/", {
     id,
-    university_comment,
+    visa_image_link,
+    visa_comment,
   })
 }

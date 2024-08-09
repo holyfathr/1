@@ -20,6 +20,7 @@ import { getProgramLanguage } from "helpers/enums"
 import useModal from "hooks/use-modal"
 
 import styles from "./application-card.module.scss"
+import Icon from "../Icon"
 
 const ApplicationCard = ({ application, onDelete, className, ...props }) => {
   const { Modal, open, close } = useModal()
@@ -124,10 +125,22 @@ const Statuses = ({ application }) => {
   return (
     <>
       {application.entrant_status === "A" && (
-        <StatusCard completed>{statusMessage}</StatusCard>
+        <StatusCard completed>
+          <Icon slug="green-dot" className={styles.dot} />
+          {statusMessage}
+        </StatusCard>
       )}
       {application.university_status === "A" && application.entrant_status === "P" && (
-        <StatusCard secondary>{statusMessage}</StatusCard>
+        <StatusCard secondary>
+          <Icon slug="wait-dot" className={styles.dot} />
+          {statusMessage}
+        </StatusCard>
+      )}
+      {application.university_status === "I" && application.entrant_status === "P" && (
+        <StatusCard secondary>
+          <Icon slug="wait-dot" className={styles.dot} />
+          {statusMessage}
+        </StatusCard>
       )}
       {application.entrant_status === "W" && <StatusCard>{statusMessage}</StatusCard>}
     </>
@@ -163,16 +176,34 @@ const StatusesFromFac = ({ application }) => {
       )} */}
       {!(application.university_status === "A" && application.entrant_status === "A") ||
         (application.entrant_status === "A" && application.university_status === "V" && (
-          <StatusCard completed>{statusMessage}</StatusCard>
+          <StatusCard completed>
+            <Icon slug="green-dot" className={styles.dot} />
+            {statusMessage}
+          </StatusCard>
         ))}
       {application.university_status === "D" && application.entrant_status === "P" && (
-        <StatusCard secondary>{statusMessage}</StatusCard>
+        <StatusCard secondary>
+          <Icon slug="wait-dot" className={styles.dot} />
+          {statusMessage}
+        </StatusCard>
+      )}
+      {application.university_status === "I" && application.entrant_status === "P" && (
+        <StatusCard warning>
+          <Icon slug="war-dot" className={styles.dot} />
+          {statusMessage}
+        </StatusCard>
       )}
       {application.university_status === "V" && application.entrant_status === "A" && (
-        <StatusCard completed>{statusMessage}</StatusCard>
+        <StatusCard completed>
+          <Icon slug="green-dot" className={styles.dot} />
+          {statusMessage}
+        </StatusCard>
       )}
       {application.university_status === "A" && application.entrant_status === "P" && (
-        <StatusCard completed>{statusMessage}</StatusCard>
+        <StatusCard completed>
+          <Icon slug="green-dot" className={styles.dot} />
+          {statusMessage}
+        </StatusCard>
       )}
       {application.university_status === "R" && application.entrant_status === "P" && (
         <StatusCard>{statusMessage}</StatusCard>

@@ -33,6 +33,7 @@ import Additional from "./sections/Additional"
 import Priority from "components/containers/ApplicationReviewSections/Priority"
 import RejectModal from "components/ui/RejectModal"
 import AcceptModal from "components/ui/AcceptModal/AcceptModal"
+import Icon from "components/ui/Icon"
 
 const ApplicationPage = ({ id }) => {
   const queryClient = useQueryClient()
@@ -116,7 +117,6 @@ const ApplicationPage = ({ id }) => {
     }
   }
 
-
   console.log(application)
 
   if (!application) return null
@@ -133,10 +133,7 @@ const ApplicationPage = ({ id }) => {
         title={application.educational_program_title}
         contentClassName={styles.subsections}
         controls={
-            <Buttons
-              application={application}
-              onRetractAgreement={onRetractAgreement}
-            />
+          <Buttons application={application} onRetractAgreement={onRetractAgreement} />
         }
       >
         <div className={styles.statusBar}>
@@ -145,7 +142,12 @@ const ApplicationPage = ({ id }) => {
             <StatusesFromFac application={application} />
           </StatusesCard.Statuses>
           <StatusesCard.Header>
-            <Header application={application} onAccept={onAccept} onReject={onReject} onOpen={open} />
+            <Header
+              application={application}
+              onAccept={onAccept}
+              onReject={onReject}
+              onOpen={open}
+            />
           </StatusesCard.Header>
         </div>
         <FormProvider {...methods}>
@@ -170,15 +172,22 @@ const ApplicationPage = ({ id }) => {
 const Header = ({ application, onReject, onAccept, onOpen }) => {
   let headerMessage
   let buttons = null
+  let icon
 
   if (application.withdrawn) {
     headerMessage = "Абитуриент отозвал заявку, далее работать с заявкой невозможно."
+  }
+  if (application.entrant_status === "P" && application.university_status === "I") {
+    headerMessage =
+      "Вуз запросил недостающую информацию или изменения по заявке. Мы свяжемся с тобой с дальнейшими инструкциями в скором времени"
+    icon = "warning-icon"
   }
   // if (application.university_status === "P") {
   //   headerMessage = "Визовое приглашение"
   // }
   if (application.entrant_status === "P" && application.university_status === "D") {
     headerMessage = "Вуз получил твою заявку и рассмотрит её в установленный срок."
+    icon = "wait-icon"
     buttons = (
       <div className={styles.buttons}>
         <Button
@@ -196,6 +205,7 @@ const Header = ({ application, onReject, onAccept, onOpen }) => {
   if (application.university_status === "A" && application.entrant_status === "P") {
     headerMessage =
       "Вуз одобрил твою заявку. Теперь тебе нужно принять решение и подать согласие на зачисление только в один вуз."
+    icon = "correct-icon"
     buttons = (
       <div className={styles.buttons}>
         <button className={styles.rejBtn} onClick={onReject}>
@@ -204,6 +214,11 @@ const Header = ({ application, onReject, onAccept, onOpen }) => {
         <Button onClick={onOpen}>Подать согласие</Button>
       </div>
     )
+  }
+  if (application.university_status === "R") {
+    headerMessage =
+      "К сожалению, вуз отклонил твою заявку. Ты можешь дождаться ответа по оставшимся заявкам или попробовать податься куда-то ещё."
+    icon = "incorrect-icon"
   }
   if (application.entrant_status === "W") {
     headerMessage = ""
@@ -217,6 +232,24 @@ const Header = ({ application, onReject, onAccept, onOpen }) => {
         </div>
       )}
       {application.entrant_status === "P" && application.university_status === "A" && (
+        <div className={styles.headerText}>
+          <p>{headerMessage}</p>
+        </div>
+      )}
+      {application.entrant_status === "P" && application.university_status === "I" && (
+        <div className={styles.headerText}>
+          <div>
+            <Icon slug={icon} className={styles.icon} />
+          </div>
+          <p>{headerMessage}</p>
+        </div>
+      )}
+      {application.entrant_status === "P" && application.university_status === "D" && (
+        <div className={styles.headerText}>
+          <p>{headerMessage}</p>
+        </div>
+      )}
+      {application.university_status === "R" && (
         <div className={styles.headerText}>
           <p>{headerMessage}</p>
         </div>
@@ -251,6 +284,12 @@ const Statuses = ({ application }) => {
       {application.university_status === "A" && application.entrant_status === "P" && (
         <StatusCard secondary>{statusMessage}</StatusCard>
       )}
+      {application.university_status === "I" && application.entrant_status === "P" && (
+        <StatusCard secondary>
+          <Icon slug="wait-dot" className={styles.dot} />
+          {statusMessage}
+        </StatusCard>
+      )}
       {application.entrant_status === "W" && <StatusCard>{statusMessage}</StatusCard>}
     </>
   )
@@ -275,6 +314,10 @@ const StatusesFromFac = ({ application }) => {
     statusMessage = "Получено визовое приглашение"
   }
 
+  if (application.university_status === "I" && application.entrant_status === "P") {
+    statusMessage = "Не соответствует требованиям"
+  }
+
   return (
     <>
       {/* {application.university_status !== "A" && application.entrant_status !== "A" && (
@@ -296,7 +339,13 @@ const StatusesFromFac = ({ application }) => {
       {application.university_status === "A" && application.entrant_status === "P" && (
         <StatusCard completed>{statusMessage}</StatusCard>
       )}
-
+      {application.university_status === "I" && application.entrant_status === "P" && (
+        <StatusCard warning>
+          <Icon slug="war-dot" className={styles.dot} />
+          {statusMessage}
+        </StatusCard>
+      )}
+      {application.university_status === "R" && <StatusCard>{statusMessage}</StatusCard>}
     </>
   )
 }

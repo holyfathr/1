@@ -36,11 +36,7 @@ const ApplicationPage = ({ id }) => {
   const router = useRouter()
   const methods = useForm()
   const queryClient = useQueryClient()
-  const {
-    Modal: CorrectModal,
-    open: openCorModal,
-    close: closeCorModal,
-  } = useModal()
+  const { Modal: CorrectModal, open: openCorModal, close: closeCorModal } = useModal()
   const {
     Modal: InCorrentModal,
     open: openInCorModal,
@@ -109,21 +105,21 @@ const ApplicationPage = ({ id }) => {
     }
   }
 
-  const onPendingVisa = async () => {
-    const alert = toast.loading("Передача приглашения...")
+  // const onPendingVisa = async () => {
+  //   const alert = toast.loading("Передача приглашения...")
 
-    try {
-      await putMutation.mutateAsync({
-        id,
-        university_status: "V",
-      })
-      await updateApplicationsQueries()
+  //   try {
+  //     await putMutation.mutateAsync({
+  //       id,
+  //       university_status: "V",
+  //     })
+  //     await updateApplicationsQueries()
 
-      toast.success("Приглашение передано", { id: alert })
-    } catch {
-      toast.dismiss(alert)
-    }
-  }
+  //     toast.success("Приглашение передано", { id: alert })
+  //   } catch {
+  //     toast.dismiss(alert)
+  //   }
+  // }
 
   console.log(application)
 
@@ -172,8 +168,8 @@ const ApplicationPage = ({ id }) => {
             onReject={onReject}
             onAccept={onAccept}
             onOpenCor={openCorModal}
-            onOpenInCor = {openInCorModal}
-            onPendingVisa={onPendingVisa}
+            onOpenInCor={openInCorModal}
+            // onPendingVisa={onPendingVisa}
           />
         </StatusesCard.Header>
         <FormProvider {...methods}>
@@ -237,8 +233,15 @@ const Statuses = ({ application }) => {
               statusMessage === "Отправлено визовое приглашение"
             }
             secondary={statusMessage === "Ожидает рассмотрения"}
+            warning={statusMessage === "Не соответствует требованиям"}
           >
-            <Icon slug="green-dot" className={styles.dot} />
+            {statusMessage === "Не соответствует требованиям" && (
+              <Icon slug="war-dot" className={styles.dot} />
+            )}
+            {statusMessage === "Ожидает рассмотрения" && (
+              <Icon slug="war-dot" className={styles.dot} />
+            )}
+            {/* <Icon slug="green-dot" className={styles.dot} /> */}
             {statusMessage}
           </StatusCard>
         ))}
@@ -259,7 +262,10 @@ const StatusesFromEntrant = ({ application }) => {
     statusMessage = "Отозвана"
   }
 
-  if (application.entrant_status === "P" && application.university_status === "A") {
+  if (
+    application.entrant_status === "P" &&
+    (application.university_status === "A" || application.university_status === "I")
+  ) {
     statusMessage = "Ожидается ответ абитуриента"
   }
 
@@ -274,11 +280,24 @@ const StatusesFromEntrant = ({ application }) => {
       {application.university_status === "D" && application.entrant_status === "W" && (
         <StatusCard>{statusMessage}</StatusCard>
       )}
+      {application.university_status === "I" && application.entrant_status === "P" && (
+        <StatusCard secondary>
+          <Icon slug="wait-dot" className={styles.dot} />
+          {statusMessage}
+        </StatusCard>
+      )}
     </>
   )
 }
 
-const Header = ({ application, onReject, onAccept, onOpenCor, onOpenInCor, onPendingVisa }) => {
+const Header = ({
+  application,
+  onReject,
+  onAccept,
+  onOpenCor,
+  onOpenInCor,
+  // onPendingVisa,
+}) => {
   let headerMessage
   let icon
   let buttons = null
@@ -286,6 +305,12 @@ const Header = ({ application, onReject, onAccept, onOpenCor, onOpenInCor, onPen
   if (application.entrant_status === "W" && application.university_status === "A") {
     headerMessage = "Абитуриент отозвал заявку, далее работать с заявкой невозможно."
     icon = "incorrect-icon"
+  }
+
+  if (application.university_status === "I") {
+    headerMessage =
+      "Вы запросили недостающую информацию или изменения по заявке, ожидается ответ от абитуриента. "
+    icon = "warning-icon"
   }
 
   if (application.entrant_status === "W" && application.university_status === "D") {
@@ -370,7 +395,7 @@ const Header = ({ application, onReject, onAccept, onOpenCor, onOpenInCor, onPen
         <p>{headerMessage}</p>
       </div>
       {application.university_status === "A" && application.entrant_status === "A" && (
-        <VisaInvitationForm onNext={onPendingVisa} />
+        <VisaInvitationForm application={application}/>
       )}
       {buttons}
     </div>
